@@ -35,14 +35,6 @@ class CouloirImpl implements Couloir {
     }
 
     public void decaler(Orientation orientation) {
-        switch (orientation) {
-            case NORD:
 
-            case SUD:
-
-            case OUEST:
-
-            case EST:
-        }
     }
 }

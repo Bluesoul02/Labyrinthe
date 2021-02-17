@@ -1,3 +1,3 @@
-public class CouloirFixe {
+public class CouloirFixe extends CouloirImpl {
 
 }
