@@ -24,7 +24,8 @@ public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
 
 @Override
 public void enregistrer(Joueur joueur, Couleur couleur) {
-	// TODO Auto-generated method stub
+  // TODO Auto-generated method stub
+  // donner un pion au joueur
 	
 }
 
@@ -35,9 +36,13 @@ public List<Couloirs> couloirs() {
 	return null;
 }
 
-private void preparer();
+private void preparer(){
+  // TODO distribuer les objectifs aux joueurs, mettre les couloirs mobiles sur le plateau
+}
 
-private void jouer();
+private void jouer(){
+
+}
 
 private Joueur prochainJoueur();
 

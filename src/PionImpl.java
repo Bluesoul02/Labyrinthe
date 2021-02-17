@@ -10,5 +10,5 @@ class PionImpl implements Pion{
 
     public void deplacer(Position pos) {};
 
-    poserA(Position pos);
+    private void poserA(Position pos);
 }
