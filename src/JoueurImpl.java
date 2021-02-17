@@ -1,4 +1,4 @@
-class JoueurImpl {
+class JoueurImpl implements Joueur {
     private int age;
     private Pile<Objectif> objectifs;
     Jeu jeu;
@@ -12,11 +12,15 @@ class JoueurImpl {
 
     }
 
+    @Override
     public void fixerObjectifs(Pile<Objectif> objectifs) {
-        
+        // TODO Auto-generated method stub
+
     }
 
+    @Override
     public void recevoirPion(Pion p) {
+        // TODO Auto-generated method stub
 
     }
 
@@ -29,6 +33,6 @@ class JoueurImpl {
     }
 
     protected Orientation choisirOrientationCouloir() {
-        
+
     }
 }
