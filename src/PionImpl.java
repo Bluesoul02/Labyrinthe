@@ -8,7 +8,7 @@ class PionImpl implements Pion{
 
     }
 
-    public void deplacer(Position pos) {
+    public Objectif deplacer(Position pos) {
 
     }
 
