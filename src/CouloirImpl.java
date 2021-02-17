@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 class CouloirImpl implements Couloir {
@@ -10,6 +11,7 @@ class CouloirImpl implements Couloir {
         this.orientation = orientation;
         this.forme = forme;
         this.objectif = objectif;
+        this.pions = new ArrayList<Pion>();
     }
 
     @Override
