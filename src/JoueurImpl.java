@@ -4,24 +4,31 @@ class JoueurImpl implements Joueur {
     Jeu jeu;
     Pion pion;
 
+    public JoueurImpl(int age, Jeu jeu) {
+        this.age = age;
+        this.jeu = jeu;
+    }
+
     public int getAge() {
         return age;
     }
 
     public void joue() {
-
+        jeu.modifierCouloirs(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
+        Objectif objectif = pion.deplacer(choisirPositionPion());
+        if(objectif == objectifs.peek()) {
+            objectifs.pop();
+        }
     }
 
     @Override
     public void fixerObjectifs(Pile<Objectif> objectifs) {
-        // TODO Auto-generated method stub
-
+        this.objectifs = objectifs;
     }
 
     @Override
     public void recevoirPion(Pion p) {
-        // TODO Auto-generated method stub
-
+        pion = p;
     }
 
     protected PositionInsertion choisirPositionInsertionCouloir() {

@@ -2,7 +2,7 @@ import java.util.*;
 
 class JeuImpl implements Jeu{
   private CouloirMobile supplementaire;
-  private positionOrigine PositionInsertion;
+  private PositionInsertion positionOrigine;
   private List<Joueur> joueurs;
   private Map<Couleur,Pion> pions;
   private Objectif[24] objectifs;
@@ -10,7 +10,8 @@ class JeuImpl implements Jeu{
 
 
   JeuImpl(){
-
+    plateau = new Plateau();
+    joueurs = new ArrayList<Joueur>();
   }
 
 
@@ -34,9 +35,9 @@ public List<Couloirs> couloirs() {
 	return null;
 }
 
-private preparer();
+private void preparer();
 
-private jouer();
+private void jouer();
 
 private Joueur prochainJoueur();
 
