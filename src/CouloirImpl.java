@@ -6,6 +6,12 @@ class CouloirImpl implements Couloir {
     private Objectif objectif;
     private List<Pion> pions;
 
+    public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif) {
+        this.orientation = orientation;
+        this.forme = forme;
+        this.objectif = objectif;
+    }
+
     @Override
     public Orientation GetOrientation() {
         return orientation;
