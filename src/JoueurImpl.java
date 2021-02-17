@@ -4,6 +4,11 @@ class JoueurImpl implements Joueur {
     Jeu jeu;
     Pion pion;
 
+    public JoueurImpl(int age, Jeu jeu) {
+        this.age = age;
+        this.jeu = jeu;
+    }
+
     public int getAge() {
         return age;
     }
