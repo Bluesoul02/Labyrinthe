@@ -1,32 +1,40 @@
 import java.util.List;
 
 class CouloirImpl implements Couloir {
+    private Orientation orientation;
+    private Forme forme;
+    private Objectif objectif;
+    private List<Pion> pions;
 
     @Override
     public Orientation GetOrientation() {
-        // TODO Auto-generated method stub
-        return null;
+        return orientation;
     }
 
     @Override
     public Forme getForme() {
-        // TODO Auto-generated method stub
-        return null;
+        return forme;
     }
 
     @Override
     public Objectif getObjectif() {
-        // TODO Auto-generated method stub
-        return null;
+        return objectif;
     }
 
     @Override
     public List<Pion> getPions() {
-        // TODO Auto-generated method stub
-        return null;
+        return pions;
     }
 
     public void decaler(Orientation orientation) {
+        switch (orientation) {
+            case NORD:
 
+            case SUD:
+
+            case OUEST:
+
+            case EST:
+        }
     }
 }
