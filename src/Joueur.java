@@ -1,6 +1,6 @@
 interface Joueur {
     int getAge();
     void joue();
-    Pile<Objectif> fixerObjectifs();
-    Pion recevoirPion();
+    void fixerObjectifs(Pile<Objectif> objectifs);
+    void recevoirPion(Pion p);
 }
