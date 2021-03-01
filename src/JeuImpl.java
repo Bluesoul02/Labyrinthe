@@ -38,6 +38,7 @@ public void enregistrer(Joueur joueur, Couleur couleur) {
 @Override
 public List<Couloirs> couloirs() {
 	// TODO Auto-generated method stub
+  // Doit créer les couloirs mobiles et doit faire appel à plateau pour créer les couloirs fixes
 	return null;
 }
 
