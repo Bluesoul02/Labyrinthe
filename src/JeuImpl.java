@@ -46,7 +46,15 @@ private void preparer(){
 }
 
 private void jouer(){
-  // Pour chaque houeur tour à tour joueur.joue();
+  Joueur joueur;
+  do {
+    joueur = prochainJoueur();
+    joueur.joue();
+  } while(!aGagne(joueur));
+}
+
+private boolean aGagne(Joueur joueur) {
+  return (joueur.objectifs.length() == 0 && joueur.pion.positionInitiale == joueur.pion.PositionCourante);
 }
 
 private Joueur prochainJoueur();
