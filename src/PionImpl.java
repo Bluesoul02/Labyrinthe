@@ -1,7 +1,7 @@
 class PionImpl implements Pion{
     private Plateau plateau;
     private Position positionInitiale;
-    private Positon positionCourante;
+    private Position positionCourante;
     private Couleur couleur;
 
 
