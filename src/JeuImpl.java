@@ -41,7 +41,7 @@ private void preparer(){
 }
 
 private void jouer(){
-
+  // Pour chaque houeur tour à tour joueur.joue();
 }
 
 private Joueur prochainJoueur();
