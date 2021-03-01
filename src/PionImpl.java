@@ -2,6 +2,7 @@ class PionImpl implements Pion{
     private Plateau plateau;
     private Position positionInitiale;
     private Positon positionCourante;
+    private Couleur couleur;
 
 
     PionImpl(){
@@ -9,6 +10,8 @@ class PionImpl implements Pion{
     }
 
     public Objectif deplacer(Position pos) {
+        
+    }
 
 
     void poserA(Position pos) {
