@@ -17,8 +17,13 @@ class JeuImpl implements Jeu{
 
 @Override
 public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
-	// TODO Auto-generated method stub
-	
+	if(pos != positionOrigine) {
+    supplementaire = plateau.modifierCouloirs(pos, supplementaire);
+    positionOrigine = pos.oppose();
+    for(Pion pion : supplementaire) {
+      pion.poserA(pos);
+    }
+  }
 }
 
 
