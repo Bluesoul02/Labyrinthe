@@ -38,12 +38,12 @@ public void enregistrer(Joueur joueur, Couleur couleur) {
 @Override
 public List<Couloirs> couloirs() {
 	// TODO Auto-generated method stub
-  // Doit créer les couloirs mobiles et doit faire appel à plateau pour créer les couloirs fixes
+  // Doit créer les couloirs mobiles
 	return null;
 }
 
 private void preparer(){
-  // TODO distribuer les objectifs aux joueurs, mettre les couloirs mobiles sur le plateau
+  // TODO distribuer les objectifs aux joueurs, attribuer les pions aux joueurs, mettre les couloirs fixe par le biais du plateau
 }
 
 private void jouer(){
