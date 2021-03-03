@@ -1,5 +1,6 @@
 public class CouloirMobile extends CouloirImpl {
     private boolean posee;
+    private Orientation orientation;
 
     public boolean isPosee() {
         return posee;

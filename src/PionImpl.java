@@ -3,8 +3,9 @@ class PionImpl implements Pion {
     private Position positionInitiale;
     private Position positionCourante;
 
-    PionImpl() {
-
+    PionImpl(Plateau plateau, Position positionInitiale) {
+        this.plateau = plateau;
+        this.positionInitiale = positionInitiale;
     }
 
     public Objectif deplacer(Position pos) {
