@@ -22,7 +22,7 @@ public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
     supplementaire = plateau.modifierCouloirs(pos, supplementaire);
     positionOrigine = pos.oppose();
     for(Pion pion : supplementaire.getPions()) {
-      pion.poserA(positionOrigine);
+      pion.poserA(pos);
     }
   }
 }
