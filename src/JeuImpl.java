@@ -45,7 +45,7 @@ class JeuImpl implements Jeu {
   }
 
   private void jouer() {
-    Joueur joueur;
+    Joueur joueur = null;
     do {
       joueur = prochainJoueur(joueur);
       joueur.joue();
