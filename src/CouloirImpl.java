@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class CouloirImpl implements Couloir {
-    protected Orientation orientation;
+    private Orientation orientation;
     private Forme forme;
     private Objectif objectif;
     private List<Pion> pions;
