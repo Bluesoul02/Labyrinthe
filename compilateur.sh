@@ -41,6 +41,5 @@ Main-Class: Main" >> ./labyrinthe.mf;
 fi
 
 cd ./bin
-jar cmf ../labyrinthe.mf ../labyrinthe.jar *.class
-cd ../..
-java -jar ./labyrinthe.jar
+jar cmf .labyrinthe.mf ../labyrinthe.jar *.class
+java -jar labyrinthe.jar
