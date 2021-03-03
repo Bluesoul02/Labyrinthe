@@ -13,8 +13,9 @@ class PionImpl implements Pion {
         }
     }
 
-    public void poserA(Position pos) {
-        plateau.deplacer(pos, this);
-        positionCourante = pos;
+    public void poserA(PositionInsertion pos) {
+        // Position pos = ;
+        // plateau.deplacer(pos, this);
+        // positionCourante = pos;
     }
 }

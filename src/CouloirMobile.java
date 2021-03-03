@@ -10,7 +10,6 @@ public class CouloirMobile extends CouloirImpl {
         this.posee = posee;
     }
 
-    @Override
     public void decaler(Orientation orientation) {
         switch (orientation) {
             case NORD:
@@ -24,7 +23,8 @@ public class CouloirMobile extends CouloirImpl {
     }
 
     public void setOrientation(Orientation oritentation) {
-        if(!posee) this.orientation = orientation;
+        if (!posee)
+            this.orientation = orientation;
     }
 
 }
