@@ -42,4 +42,5 @@ fi
 
 cd ./bin
 jar cmf .labyrinthe.mf ../labyrinthe.jar *.class
+cd ..
 java -jar labyrinthe.jar

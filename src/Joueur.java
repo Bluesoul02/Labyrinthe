@@ -1,6 +1,10 @@
 import java.util.Stack;
 
 interface Joueur {
+    Pion getPion();
+
+    Stack<Objectif> getObjectifs();
+
     int getAge();
 
     void joue();

@@ -8,6 +8,16 @@ class PionImpl implements Pion {
         this.positionInitiale = positionInitiale;
     }
 
+    @Override
+    public Position getPositionCourante() {
+        return positionCourante;
+    }
+
+    @Override
+    public Position getPositionInitiale() {
+        return positionInitiale;
+    }
+
     public Objectif deplacer(Position pos) {
         if (plateau.estAtteignable(positionCourante, pos)) {
         }

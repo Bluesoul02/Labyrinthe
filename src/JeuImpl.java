@@ -53,7 +53,8 @@ class JeuImpl implements Jeu {
   }
 
   private boolean aGagne(Joueur joueur) {
-    return (joueur.objectifs.length() == 0 && joueur.pion.positionInitiale == joueur.pion.PositionCourante);
+    return (joueur.getObjectifs().empty()
+        && joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante());
   }
 
   private Joueur prochainJoueur(Joueur lastJoueur) {

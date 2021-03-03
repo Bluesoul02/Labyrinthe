@@ -44,4 +44,12 @@ class JoueurImpl implements Joueur {
     protected Orientation choisirOrientationCouloir() {
 
     }
+
+    public Stack<Objectif> getObjectifs() {
+        return objectifs;
+    }
+
+    public Pion getPion() {
+        return pion;
+    }
 }
