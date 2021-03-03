@@ -12,7 +12,8 @@ class PionImpl implements Pion {
 
     }
 
-    void poserA(Position pos) {
+    @Override
+    public void poserA(Position pos) {
         if (plateau.estAtteignable(positionCourante, pos)) {
             plateau.deplacer(pos, this);
             positionCourante = pos;
