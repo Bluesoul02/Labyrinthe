@@ -1,7 +1,7 @@
 import java.util.List;
 
 interface Couloir {
-    Orientation GetOrientation();
+    Orientation getOrientation();
 
     Forme getForme();
 
