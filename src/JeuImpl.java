@@ -5,13 +5,14 @@ class JeuImpl implements Jeu{
   private PositionInsertion positionOrigine;
   private List<Joueur> joueurs;
   private Map<Couleur,Pion> pions;
-  private Objectif[24] objectifs;
+  private Objectif[] objectifs;
   private Plateau plateau;
 
 
   JeuImpl(){
     plateau = new Plateau();
     joueurs = new ArrayList<Joueur>();
+    objectifs = new Objectif[24];
   }
 
 
@@ -20,8 +21,8 @@ public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
 	if(pos != positionOrigine) {
     supplementaire = plateau.modifierCouloirs(pos, supplementaire);
     positionOrigine = pos.oppose();
-    for(Pion pion : supplementaire) {
-      pion.poserA(pos);
+    for(Pion pion : supplementaire.getPions()) {
+      pion.poserA(positionOrigine);
     }
   }
 }

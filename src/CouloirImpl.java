@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class CouloirImpl implements Couloir {
-    private Orientation orientation;
+    protected Orientation orientation;
     private Forme forme;
     private Objectif objectif;
     private List<Pion> pions;
@@ -15,7 +15,7 @@ class CouloirImpl implements Couloir {
     }
 
     @Override
-    public Orientation GetOrientation() {
+    public Orientation getOrientation() {
         return orientation;
     }
 
@@ -32,9 +32,5 @@ class CouloirImpl implements Couloir {
     @Override
     public List<Pion> getPions() {
         return pions;
-    }
-
-    public void decaler(Orientation orientation) {
-
     }
 }

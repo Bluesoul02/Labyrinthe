@@ -1,11 +1,6 @@
 public class CouloirMobile extends CouloirImpl {
     private boolean posee;
 
-    @Override
-    public void decaler(Orientation orientation) {
-        super.decaler(orientation);
-    }
-
     public boolean isPosee() {
         return posee;
     }
@@ -28,7 +23,7 @@ public class CouloirMobile extends CouloirImpl {
     }
 
     public void setOrientation(Orientation oritentation) {
-        this.orientation = orientation;
+        if(!posee) this.orientation = orientation;
     }
 
 }

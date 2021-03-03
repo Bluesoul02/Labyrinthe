@@ -1,3 +1,3 @@
 interface Pion {
-    Objectif deplacer(Position pos);
+    deplacer(Position pos);
 }
