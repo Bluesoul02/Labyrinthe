@@ -57,6 +57,8 @@ class JeuImpl implements Jeu {
   }
 
   private Joueur prochainJoueur(Joueur lastJoueur) {
+    if (lastJoueur == null)
+      return joueurs.get(0);
     int index = joueurs.indexOf(lastJoueur);
     if (index == joueurs.size() - 1)
       return joueurs.get(0);
