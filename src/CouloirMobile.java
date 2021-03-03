@@ -2,6 +2,10 @@ public class CouloirMobile extends CouloirImpl {
     private boolean posee;
     private Orientation orientation;
 
+    public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif) {
+        super(orientation, forme, objectif);
+    }
+
     public boolean isPosee() {
         return posee;
     }
