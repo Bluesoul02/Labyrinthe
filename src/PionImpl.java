@@ -9,14 +9,21 @@ class PionImpl implements Pion {
     }
 
     public Objectif deplacer(Position pos) {
-
+        if (plateau.estAtteignable(positionCourante, pos)) {
+        }
     }
 
+<<<<<<< HEAD
+    void poserA(Position pos) {
+        plateau.deplacer(pos, this);
+        positionCourante = pos;
+=======
     @Override
     public void poserA(Position pos) {
         if (plateau.estAtteignable(positionCourante, pos)) {
             plateau.deplacer(pos, this);
             positionCourante = pos;
         }
+>>>>>>> 8e30dbe48dcd2112432d6faa3474a555484a17b5
     }
 }

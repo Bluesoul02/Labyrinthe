@@ -2,8 +2,13 @@ enum PositionInsertion {
     N1, N2, N3, E1, E2, E3, S1, S2, S3, O1, O2, O3;
 
     public PositionInsertion oppose() {
+<<<<<<< HEAD
+        switch(this) {
+            case N1 :
+=======
         switch (this) {
             case N1:
+>>>>>>> 8e30dbe48dcd2112432d6faa3474a555484a17b5
                 return S1;
             case N2:
                 return S2;
