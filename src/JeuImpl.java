@@ -14,13 +14,12 @@ class JeuImpl implements Jeu {
     objectifs = new Objectif[24];
   }
 
-
   @Override
   public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
-    if(pos != positionOrigine) {
+    if (pos != positionOrigine) {
       supplementaire = plateau.modifierCouloirs(pos, supplementaire);
       positionOrigine = pos.oppose();
-      for(Pion pion : supplementaire.getPions()) {
+      for (Pion pion : supplementaire.getPions()) {
         pion.poserA(pos);
       }
     }
@@ -48,7 +47,7 @@ class JeuImpl implements Jeu {
   private void jouer() {
     Joueur joueur;
     do {
-      joueur = prochainJoueur();
+      joueur = prochainJoueur(joueur);
       joueur.joue();
     } while (!aGagne(joueur));
   }
@@ -57,8 +56,11 @@ class JeuImpl implements Jeu {
     return (joueur.objectifs.length() == 0 && joueur.pion.positionInitiale == joueur.pion.PositionCourante);
   }
 
-  private Joueur prochainJoueur() {
-
+  private Joueur prochainJoueur(Joueur lastJoueur) {
+    int index = joueurs.indexOf(lastJoueur);
+    if (index == joueurs.size() - 1)
+      return joueurs.get(0);
+    else
+      return joueurs.get(++index);
   }
-
 }
