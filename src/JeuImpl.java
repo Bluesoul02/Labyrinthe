@@ -14,13 +14,14 @@ class JeuImpl implements Jeu {
     objectifs = new Objectif[24];
   }
 
+
   @Override
   public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
-    if (pos != positionOrigine) {
+    if(pos != positionOrigine) {
       supplementaire = plateau.modifierCouloirs(pos, supplementaire);
       positionOrigine = pos.oppose();
-      for (Pion pion : supplementaire.getPions()) {
-        pion.poserA(positionOrigine);
+      for(Pion pion : supplementaire.getPions()) {
+        pion.poserA(pos);
       }
     }
   }
