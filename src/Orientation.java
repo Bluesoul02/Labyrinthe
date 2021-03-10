@@ -1,3 +1,3 @@
 enum Orientation {
-    NORD, SUD, EST, OUEST
+    NORD, EST, SUD, OUEST
 }
