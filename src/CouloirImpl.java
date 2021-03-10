@@ -40,4 +40,9 @@ class CouloirImpl implements Couloir {
     public Position getPosition() {
         return position;
     }
+
+    @Override
+    public void addPion(Pion pion) {
+        pions.add(pion);
+    }
 }
