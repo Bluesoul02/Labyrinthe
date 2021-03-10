@@ -61,11 +61,11 @@ class JeuImpl implements Jeu {
           objs.add(Integer.valueOf(k));
         }
       }
-      if (i == 3 || i == 13 || i == 23) {
+      if (i >= 3 &&  (i == 3 || i == 13 || i == 23)) {
         x = 0;
         y++;
         stepX = 1;
-      } else if (i % 10 == 0) {
+      } else if (i >= 10 && i % 10 == 0) {
         x = 1;
         y++;
         stepX = 2;
@@ -73,7 +73,7 @@ class JeuImpl implements Jeu {
         x += stepX;
       }
       Position pos = new Position(x, y);
-
+      System.out.println(x + " " + y);
       CouloirMobile coul = new CouloirMobile(Orientation.values()[or], Forme.values()[f], obj, pos);
       coul.setPosee(true);
 
