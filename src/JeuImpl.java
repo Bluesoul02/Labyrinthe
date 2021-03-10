@@ -17,6 +17,7 @@ class JeuImpl implements Jeu {
   @Override
   public void modifierCouloirs(PositionInsertion pos, Orientation orientation) {
     if (pos != positionOrigine) {
+      supplementaire.setOrientation(orientation);
       supplementaire = plateau.modifierCouloirs(pos, supplementaire);
       positionOrigine = pos.oppose();
       for (Pion pion : supplementaire.getPions()) {
@@ -33,7 +34,7 @@ class JeuImpl implements Jeu {
   }
 
   @Override
-  public List<Couloir> couloirs() {
+  public Couloir[][] couloirs() {
     // Doit créer les couloirs mobiles
     return null;
   }
