@@ -32,8 +32,7 @@ public class CouloirMobile extends CouloirImpl {
     }
 
     public void setOrientation(Orientation orientation) {
-        if (!posee)
-            this.orientation = orientation;
+        if (!posee) this.orientation = orientation;
     }
 
 }
