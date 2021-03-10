@@ -7,7 +7,7 @@ class Plateau {
     private static final Random RAND = new Random();
 
     Plateau() {
-        couloirs = new List<>();
+        couloirs = new ArrayList<>();
     }
 
     protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
@@ -34,7 +34,7 @@ class Plateau {
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
-        
+
     }
 
     protected Boolean estAtteignable(Position orig, Position dest) {
@@ -61,7 +61,7 @@ class Plateau {
         }
     }
 
-    protected void addCouloirsMobiles(List<Couloir> couloirs){
+    protected void addCouloirsMobiles(List<Couloir> couloirs) {
         this.couloirs.addAll(couloirs);
     }
 
