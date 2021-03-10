@@ -20,8 +20,8 @@ class PionImpl implements Pion {
 
     public Objectif deplacer(Position pos) {
         Objectif ob = plateau.deplacer(pos, this);
+        this.positionCourante = pos;
         if(ob != null){
-            this.positionCourante = pos;
             return ob;
         }
         return null;

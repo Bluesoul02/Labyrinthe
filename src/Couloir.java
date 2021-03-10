@@ -12,4 +12,6 @@ interface Couloir {
     Position getPosition();
 
     void addPion(Pion p);
+
+    void removePion(Pion p);
 }
