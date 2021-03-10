@@ -19,12 +19,12 @@ class PionImpl implements Pion {
     }
 
     public Objectif deplacer(Position pos) {
-        if (plateau.estAtteignable(positionCourante, pos)) {
-            Objectif obj = plateau.deplacer(pos, this);
-            positionCourante = pos;
-            return obj;
+        Objectif ob = plateau.deplacer(pos, this);
+        if(ob != null){
+            this.positionCourante = pos;
+            return ob;
         }
-        return null; // Exception
+        return null;
     }
 
     public void poserA(PositionInsertion posIns) {
