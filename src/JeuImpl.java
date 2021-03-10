@@ -69,7 +69,7 @@ class JeuImpl implements Jeu {
         x = 1;
         y++;
         stepX = 2;
-      } else {
+      } else if(i > 0) {
         x += stepX;
       }
       Position pos = new Position(x, y);
