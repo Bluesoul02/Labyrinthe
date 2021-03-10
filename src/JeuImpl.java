@@ -34,7 +34,7 @@ class JeuImpl implements Jeu {
   }
 
   @Override
-  public Couloir[][] couloirs() {
+  public List<Couloir> couloirs() {
     // Doit créer les couloirs mobiles
     return null;
   }
