@@ -6,4 +6,6 @@ interface Pion {
     Position getPositionInitiale();
 
     Position getPositionCourante();
+
+    Position posInsToPos(PositionInsertion posIns);
 }

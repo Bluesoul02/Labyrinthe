@@ -20,12 +20,44 @@ class PionImpl implements Pion {
 
     public Objectif deplacer(Position pos) {
         if (plateau.estAtteignable(positionCourante, pos)) {
+            Objectif obj = plateau.deplacer(pos, this);
+            positionCourante = pos;
+            return obj;
         }
+        return null; // Exception
     }
 
     public void poserA(PositionInsertion posIns) {
-        // Position pos = ;
-        // plateau.deplacer(pos, this);
-        // positionCourante = pos;
+        Position pos = posInsToPos(posIns);
+        plateau.deplacer(pos, this);
+        positionCourante = pos;
+    }
+
+    public Position posInsToPos(PositionInsertion posIns) {
+        Poisiton pos;
+        String en = posIns.toString();
+        int x;
+        int y;
+        int en2 = (int) en.substring(1,1);
+        switch(en.substring(0,1)) {
+            case "N":
+                x=(en2 * 2) - 1;
+                y=0;
+                break;
+            case "E":
+                x=0;
+                y=(en2 * 2) - 1;
+                break;
+            case "O":
+                y=6;
+                x=(en2 * 2) - 1;
+                break;
+            case "S":
+                x=6;
+                y=(en2 * 2) - 1;
+                break;
+        }
+        pos = new Position(x,y);
+        return pos;
     }
 }
