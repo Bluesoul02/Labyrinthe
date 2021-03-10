@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.swing.JFrame;
-
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
   private PositionInsertion positionOrigine;
@@ -61,7 +59,7 @@ class JeuImpl implements Jeu {
           objs.add(Integer.valueOf(k));
         }
       }
-      if (i >= 3 &&  (i == 3 || i == 13 || i == 23)) {
+      if (i >= 3 && (i == 3 || i == 13 || i == 23)) {
         x = 0;
         y++;
         stepX = 1;
@@ -69,7 +67,7 @@ class JeuImpl implements Jeu {
         x = 1;
         y++;
         stepX = 2;
-      } else if(i > 0) {
+      } else if (i > 0) {
         x += stepX;
       }
       Position pos = new Position(x, y);
