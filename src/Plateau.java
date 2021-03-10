@@ -35,10 +35,8 @@ class Plateau {
 
     protected Objectif deplacer(Position pos, Pion pion) {
         /*
-        if(estAtteignable(pion.getPositionCourante(), pos)){
-            pion.
-            return 
-        }*/
+         * if(estAtteignable(pion.getPositionCourante(), pos)){ pion. return }
+         */
         return null;
 
     }
@@ -67,13 +65,13 @@ class Plateau {
         }
     }
 
-    protected void addCouloirsMobiles(List<Couloir> couloirs){
+    protected void addCouloirsMobiles(List<Couloir> couloirs) {
         this.couloirs.addAll(couloirs);
     }
 
     protected Couloir getCouloir(Position pos) {
         for (int i = 0; i < couloirs.size(); i++) {
-            if (couloirs.get(i).getPosition() == pos)
+            if (couloirs.get(i).getPosition().x() == pos.x() && couloirs.get(i).getPosition().y() == pos.y())
                 if (couloirs.get(i).getClass() != CouloirMobile.class || ((CouloirMobile) couloirs.get(i)).isPosee())
                     return couloirs.get(i);
         }
