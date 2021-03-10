@@ -45,4 +45,9 @@ class CouloirImpl implements Couloir {
     public void addPion(Pion pion) {
         pions.add(pion);
     }
+
+    @Override
+    public String toString() {
+        return forme + " " + objectif + " " + orientation;
+    }
 }
