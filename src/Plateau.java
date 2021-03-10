@@ -34,11 +34,9 @@ class Plateau {
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
-        /*
-         * if(estAtteignable(pion.getPositionCourante(), pos)){ pion. return }
-         */
-        return null;
-
+        Couloir couloir = getCouloir(pos);
+        if(couloir != null) couloir.addPion(pion);
+        return couloir.getObjectif();
     }
 
     protected Boolean estAtteignable(Position orig, Position dest) {

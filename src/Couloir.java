@@ -10,4 +10,6 @@ interface Couloir {
     List<Pion> getPions();
 
     Position getPosition();
+
+    void addPion(Pion p);
 }
