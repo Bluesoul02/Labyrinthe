@@ -70,7 +70,7 @@ class Plateau {
             actual = objectifs[RAND.nextInt(objectifs.length)];
             while(objUtilise.contains(actual)) actual = objectifs[RAND.nextInt(objectifs.length)];
             objUtilise.add(actual);
-            couloirs.add(new CouloirFixe(orients[i], Forme.TE, objectifs[RAND.nextInt(objectifs.length)], new Position(values[i][2],values[i][3])));
+            couloirs.add(new CouloirFixe(orients[i], Forme.TE, actual, new Position(values[i][2],values[i][3])));
         }
         return objUtilise;
     }
