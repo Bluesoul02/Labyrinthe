@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.Scanner;
 
 class JoueurImpl implements Joueur {
     private int age;
@@ -34,6 +35,11 @@ class JoueurImpl implements Joueur {
     }
 
     protected PositionInsertion choisirPositionInsertionCouloir() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez l'endroit où vous voulez insérer le couloir : ");
+
+
+        return PositionInsertion.N1;
 
     }
 

@@ -34,11 +34,11 @@ class PionImpl implements Pion {
     }
 
     public Position posInsToPos(PositionInsertion posIns) {
-        Poisiton pos;
+        Position pos;
         String en = posIns.toString();
         int x;
         int y;
-        int en2 = (int) en.substring(1,1);
+        int en2 = Integer.parseInt(en.substring(1,1));
         switch(en.substring(0,1)) {
             case "N":
                 x=(en2 * 2) - 1;
