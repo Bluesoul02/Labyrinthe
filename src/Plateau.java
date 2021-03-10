@@ -7,7 +7,7 @@ class Plateau {
     private static final Random RAND = new Random();
 
     Plateau() {
-        couloirs = new ArrayList<>();
+        couloirs = new ArrayList<Couloir>();
     }
 
     protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
@@ -35,6 +35,7 @@ class Plateau {
 
     protected Objectif deplacer(Position pos, Pion pion) {
         Couloir couloir = getCouloir(pos);
+        getCouloir(pion.getPositionCourante()).removePion(pion);
         if(couloir != null) couloir.addPion(pion);
         return couloir.getObjectif();
     }
@@ -49,7 +50,7 @@ class Plateau {
         Orientation[] orients = Orientation.values();
         Couleur[] couleurs = Couleur.values();
         for (int i = 0; i < 4; i++) {
-            couloirs.add(new CouloirFixe(orients[i], Forme.COUDE, null, couleurs[i].getPositionInitiale()));
+            couloirs.add((Couloir) new CouloirFixe(orients[i], Forme.COUDE, null, couleurs[i].getPositionInitiale()));
         }
 
         Position[] positions = { new Position(2, 2), new Position(4, 2), new Position(4, 4), new Position(2, 4) };
@@ -58,7 +59,7 @@ class Plateau {
             actual = objectifs[RAND.nextInt(objectifs.length)];
             while(objUtilise.contains(actual)) actual = objectifs[RAND.nextInt(objectifs.length)];
             objUtilise.add(actual);
-            couloirs.add(new CouloirFixe(orients[i], Forme.TE, actual, positions[i]));
+            couloirs.add((Couloir) new CouloirFixe(orients[i], Forme.TE, actual, positions[i]));
         }
 
         int[][] values = { { 0, 2, 0, 4 }, { 2, 0, 4, 0 }, { 6, 2, 6, 4 }, { 2, 6, 4, 6 } };
@@ -66,11 +67,11 @@ class Plateau {
             actual = objectifs[RAND.nextInt(objectifs.length)];
             while(objUtilise.contains(actual)) actual = objectifs[RAND.nextInt(objectifs.length)];
             objUtilise.add(actual);
-            couloirs.add(new CouloirFixe(orients[i], Forme.TE, actual, new Position(values[i][0],values[i][1])));
+            couloirs.add((Couloir) new CouloirFixe(orients[i], Forme.TE, actual, new Position(values[i][0],values[i][1])));
             actual = objectifs[RAND.nextInt(objectifs.length)];
             while(objUtilise.contains(actual)) actual = objectifs[RAND.nextInt(objectifs.length)];
             objUtilise.add(actual);
-            couloirs.add(new CouloirFixe(orients[i], Forme.TE, actual, new Position(values[i][2],values[i][3])));
+            couloirs.add((Couloir) new CouloirFixe(orients[i], Forme.TE, actual, new Position(values[i][2],values[i][3])));
         }
         return objUtilise;
     }

@@ -50,4 +50,9 @@ class CouloirImpl implements Couloir {
     public String toString() {
         return forme + " " + objectif + " " + orientation;
     }
+
+    @Override
+    public void removePion(Pion p) {
+        pions.remove(p);
+    }
 }
