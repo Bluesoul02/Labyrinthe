@@ -73,7 +73,6 @@ class JeuImpl implements Jeu {
         x += stepX;
       }
       Position pos = new Position(x, y);
-      System.out.println(x + " " + y);
       CouloirMobile coul = new CouloirMobile(Orientation.values()[or], Forme.values()[f], obj, pos);
       coul.setPosee(true);
 
