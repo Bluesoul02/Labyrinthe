@@ -9,6 +9,7 @@ class JeuImpl implements Jeu {
   private Map<Couleur, Pion> pions;
   private Objectif[] objectifs;
   private Plateau plateau;
+  private static final Random RAND = new Random();
 
   JeuImpl() {
     plateau = new Plateau();
@@ -74,8 +75,16 @@ class JeuImpl implements Jeu {
   }
 
   private void preparer() {
-    // TODO distribuer les objectifs aux joueurs, attribuer les pions aux joueurs,
-    // mettre les couloirs fixe par le biais du plateau
+    Objectif[] objectifs = Objectif.values();
+    int nb = objectifs.size() / joueurs.size();
+    for(Joueur j : joueurs) {
+      Stack<Objectif> tabObj = new Stack<Objectif>();
+      for(int i=0; i<nb; i++) {
+        tabObj.push(objectifs[RAND.nextInt(objectifs.length)]);
+      }
+      j.fixerObjectifs(tabObj);
+    }
+    plateau.setCouloirFixe();
   }
 
   private void jouer() {
