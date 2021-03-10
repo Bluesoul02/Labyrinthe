@@ -69,7 +69,9 @@ class JeuImpl implements Jeu {
       }
       Position pos = new Position(x, y);
 
-      couloirs.add(new CouloirMobile(Orientation.values()[or], Forme.values()[f], obj, pos));
+      CouloirMobile coul = new CouloirMobile(Orientation.values()[or], Forme.values()[f], obj, pos);
+      coul.setPosee(true);
+      couloirs.add(coul);
     }
     return couloirs;
   }
