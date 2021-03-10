@@ -76,7 +76,7 @@ class JeuImpl implements Jeu {
 
   private void preparer() {
     Objectif[] objectifs = Objectif.values();
-    int nb = objectifs.size() / joueurs.size();
+    int nb = objectifs.length / joueurs.size();
     for(Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
       for(int i=0; i<nb; i++) {
