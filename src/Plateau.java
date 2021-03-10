@@ -23,4 +23,8 @@ class Plateau {
     protected void setCouloirFixe() {
         couloirs.push(new CouloirFixe(EST, forme, objectif, ));
     }
+
+    public List<Couloir> getCouloirs() {
+        return couloirs;
+    }
 }

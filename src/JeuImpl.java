@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.swing.JFrame;
+
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
   private PositionInsertion positionOrigine;
@@ -41,25 +43,25 @@ class JeuImpl implements Jeu {
     int stepX = 2;
     int x = 1;
     int y = 0;
-    for (int i = 0; i < 34; i++){
+    for (int i = 0; i < 34; i++) {
       int f = rand.nextInt(3);
       int or = rand.nextInt(4);
       int hasObj = rand.nextInt(2);
       Objectif obj = null;
-      if(hasObj == 0){
-        while(obj == null || objs.contains(obj)){
+      if (hasObj == 0) {
+        while (obj == null || objs.contains(obj)) {
           obj = Objectif.values()[rand.nextInt(24)];
         }
       }
-      if(i == 3 || i == 13 ||i == 23){
+      if (i == 3 || i == 13 || i == 23) {
         x = 0;
         y++;
         stepX = 1;
-      }else if(i % 10 == 0) {
+      } else if (i % 10 == 0) {
         x = 1;
         y++;
         stepX = 2;
-      }else{
+      } else {
         x += stepX;
       }
       Position pos = new Position(x, y);
@@ -95,5 +97,9 @@ class JeuImpl implements Jeu {
       return joueurs.get(0);
     else
       return joueurs.get(++index);
+  }
+
+  public void display() {
+    JFrame frame = new DisplayWindow(plateau);
   }
 }
