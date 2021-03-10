@@ -27,9 +27,9 @@ class JeuImpl implements Jeu {
 
   @Override
   public void enregistrer(Joueur joueur, Couleur couleur) {
-    // TODO Auto-generated method stub
-    // donner un pion au joueur
-
+    Pion p = new PionImpl(plateau, couleur.getPositionInitiale());
+    pions.put(couleur, p);
+    joueur.recevoirPion(p);
   }
 
   @Override
