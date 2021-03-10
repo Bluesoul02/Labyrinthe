@@ -7,14 +7,14 @@ class JeuImpl implements Jeu {
   private PositionInsertion positionOrigine;
   private List<Joueur> joueurs;
   private Map<Couleur, Pion> pions;
-  private Objectif[] objectifs;
+  private List<Objectif> objectifs;
   private Plateau plateau;
   private static final Random RAND = new Random();
 
   JeuImpl() {
     plateau = new Plateau();
     joueurs = new ArrayList<Joueur>();
-    objectifs = new Objectif[24];
+    objectifs = new ArrayList<>();
     pions = new HashMap<Couleur, Pion>();
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
@@ -45,7 +45,6 @@ class JeuImpl implements Jeu {
   public List<Couloir> couloirs() {
     List<Couloir> couloirs = new ArrayList<Couloir>();
     Random rand = new Random();
-    List<Integer> objs = new ArrayList<Integer>();
     int stepX = 2;
     int x = 1;
     int y = 0;
@@ -54,11 +53,16 @@ class JeuImpl implements Jeu {
       int or = rand.nextInt(4);
       int hasObj = rand.nextInt(2);
       Objectif obj = null;
-      if (hasObj == 0) {
-        while (obj == null || objs.contains(obj)) {
-          int k = rand.nextInt(24);
+      int k = -1;
+      if (hasObj == 0 && objectifs.size() < 24) {
+        Boolean found = false;
+        while (!found){
+          k = rand.nextInt(24);
           obj = Objectif.values()[k];
-          objs.add(Integer.valueOf(k));
+          if(!objectifs.contains(obj)){
+            objectifs.add(obj);
+            found = true;
+          }
         }
       }
       if (i >= 3 &&  (i == 3 || i == 13 || i == 23)) {
@@ -92,7 +96,7 @@ class JeuImpl implements Jeu {
       }
       j.fixerObjectifs(tabObj);
     }
-    plateau.setCouloirFixe();
+    this.objectifs = plateau.setCouloirFixe();
     plateau.addCouloirsMobiles(couloirs());
   }
 
