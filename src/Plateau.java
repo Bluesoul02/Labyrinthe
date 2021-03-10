@@ -7,7 +7,7 @@ class Plateau {
     private static final Random RAND = new Random();
 
     Plateau() {
-        couloirs = new ArrayList<>();
+        couloirs = new List<>();
     }
 
     protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
@@ -16,6 +16,7 @@ class Plateau {
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
+        pion.deplacer(pos);
 
     }
 
@@ -41,6 +42,10 @@ class Plateau {
             new CouloirFixe(orients[i], Forme.TE, objectifs[RAND.nextInt(objectifs.length)], new Position(values[i][0],values[i][1]));
             new CouloirFixe(orients[i], Forme.TE, objectifs[RAND.nextInt(objectifs.length)], new Position(values[i][2],values[i][3]));
         }
+    }
+
+    protected void addCouloirsMobiles(List<Couloir> couloirs){
+        this.couloirs.addAll(couloirs);
     }
 
     protected Couloir getCouloir(Position pos) {
