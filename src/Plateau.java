@@ -11,7 +11,8 @@ class Plateau {
     }
 
     protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
-
+        Orientation orientation = pos.getOrientation();
+        c.decaler(orientation);
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
@@ -42,7 +43,12 @@ class Plateau {
         }
     }
 
-    public List<Couloir> getCouloirs() {
-        return couloirs;
+    protected Couloir getCouloir(Position pos) {
+        for (int i = 0; i < couloirs.size(); i++) {
+            if (couloirs.get(i).getPosition() == pos)
+                if (couloirs.get(i).getClass() != CouloirMobile.class || ((CouloirMobile) couloirs.get(i)).isPosee())
+                    return couloirs.get(i);
+        }
+        return null; // faire une exception?
     }
 }

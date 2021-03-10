@@ -14,6 +14,8 @@ class JeuImpl implements Jeu {
     plateau = new Plateau();
     joueurs = new ArrayList<Joueur>();
     objectifs = new Objectif[24];
+    couloirs();
+    display();
   }
 
   @Override
