@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 class JeuImpl implements Jeu {
@@ -54,10 +55,10 @@ class JeuImpl implements Jeu {
       int k = -1;
       if (hasObj == 0 && objectifs.size() < 24) {
         Boolean found = false;
-        while (!found){
+        while (!found) {
           k = rand.nextInt(24);
           obj = Objectif.values()[k];
-          if(!objectifs.contains(obj)){
+          if (!objectifs.contains(obj)) {
             objectifs.add(obj);
             found = true;
           }
@@ -122,6 +123,10 @@ class JeuImpl implements Jeu {
   }
 
   public void display() {
-    new DisplayWindow(plateau);
+    try {
+      new DisplayWindow(plateau);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
