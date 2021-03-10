@@ -9,7 +9,9 @@ public class GameContainer extends JPanel {
         this.setLayout(new GridLayout(7, 7));
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
-                JButton b = new JButton(plateau.getCouloir(new Position(i, j)).toString());
+                Couloir c = plateau.getCouloir(new Position(i, j));
+                System.out.println(c);
+                JButton b = new JButton();
                 b.setVisible(true);
                 this.add(b);
             }
