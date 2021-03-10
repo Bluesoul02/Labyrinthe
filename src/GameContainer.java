@@ -10,7 +10,8 @@ public class GameContainer extends JPanel {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 Couloir c = plateau.getCouloir(new Position(j, i));
-                JButton b = new JButton("" + c.toString());
+                JButton b = new JButton(
+                        new ImageIcon("img/" + c.getForme().toString() + "/" + c.getOrientation().toString() + ".png"));
                 b.setVisible(true);
                 this.add(b);
             }
