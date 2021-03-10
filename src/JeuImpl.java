@@ -35,8 +35,38 @@ class JeuImpl implements Jeu {
 
   @Override
   public List<Couloir> couloirs() {
-    // Doit créer les couloirs mobiles
-    return null;
+    List<Couloir> couloirs = new List<Couloir>();
+    Random rand = new Random();
+    List<Integer> objs = new List<Integer>();
+    int stepX = 2;
+    int x = 1;
+    int y = 0;
+    for (int i = 0; i < 34; i++){
+      int f = rand.nextInt(3);
+      int or = rand.nextInt(4);
+      int hasObj = rand.nextInt(2);
+      Objectif obj = null;
+      if(hasObj == 0){
+        while(obj == null || objs.contains(obj)){
+          obj = Objectif.values()[rand.nextInt(24)];
+        }
+      }
+      if(i == 3 || i == 13 ||i == 23){
+        x = 0;
+        y++;
+        stepX = 1;
+      }else if(i % 10 == 0) {
+        x = 1;
+        y++;
+        stepX = 2;
+      }else{
+        x += stepX;
+      }
+      Position pos = new Position(x, y);
+
+      couloirs.add(new CouloirMobile(Orientation.values()[or], Forme.values()[f], obj, pos));
+    }
+    return couloirs;
   }
 
   private void preparer() {

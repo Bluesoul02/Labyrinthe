@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.*;
+
 import java.awt.event.*;
 
 public class DisplayWindow extends JFrame {
@@ -13,9 +15,12 @@ public class DisplayWindow extends JFrame {
                 System.exit(0);
             }
         };
-
         addWindowListener(l);
-        setSize(200, 100);
+        JPanel gameContainer = new GameContainer();
+        setContentPane(gameContainer);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize().getSize());
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(true);
         setVisible(true);
     }
 }
