@@ -45,7 +45,7 @@ class JeuImpl implements Jeu {
   public List<Couloir> couloirs() {
     List<Couloir> couloirs = new ArrayList<Couloir>();
     Random rand = new Random();
-    List<Integer> objs = new ArrayList<Integer>();
+    List<Objectif> objs = new ArrayList<Objectif>();
     int stepX = 2;
     int x = 1;
     int y = 0;
@@ -54,11 +54,16 @@ class JeuImpl implements Jeu {
       int or = rand.nextInt(4);
       int hasObj = rand.nextInt(2);
       Objectif obj = null;
-      if (hasObj == 0) {
-        while (obj == null || objs.contains(obj)) {
-          int k = rand.nextInt(24);
+      int k = -1;
+      if (hasObj == 0 && objs.size() < 24) {
+        Boolean found = false;
+        while (!found){
+          k = rand.nextInt(24);
           obj = Objectif.values()[k];
-          objs.add(Integer.valueOf(k));
+          if(!objs.contains(obj)){
+            objs.add(obj);
+            found = true;
+          }
         }
       }
       if (i >= 3 &&  (i == 3 || i == 13 || i == 23)) {
