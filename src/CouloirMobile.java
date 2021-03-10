@@ -16,17 +16,22 @@ public class CouloirMobile extends CouloirImpl {
 
     public void decaler(Orientation orientation) {
         switch (orientation) {
-            case NORD:
-
-            case SUD:
-
-            case OUEST:
-
-            case EST:
+        case NORD:
+            // x + 1;
+            break;
+        case SUD:
+            // x - 1;
+            break;
+        case OUEST:
+            // y + 1;
+            break;
+        case EST:
+            // y - 1;
+            break;
         }
     }
 
-    public void setOrientation(Orientation oritentation) {
+    public void setOrientation(Orientation orientation) {
         if (!posee)
             this.orientation = orientation;
     }

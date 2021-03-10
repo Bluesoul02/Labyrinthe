@@ -34,7 +34,6 @@ class JeuImpl implements Jeu {
 
   @Override
   public List<Couloir> couloirs() {
-    // TODO Auto-generated method stub
     // Doit créer les couloirs mobiles
     return null;
   }
