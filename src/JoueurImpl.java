@@ -38,12 +38,12 @@ class JoueurImpl implements Joueur {
         Scanner sc = new Scanner(System.in);
         Boolean valide = false;
         PositionInsertion pi;
-        while (!valide){
+        while (!valide) {
             System.out.println("Entrez l'endroit où vous voulez insérer le couloir (N1,S2,E3...) : ");
-            try{
+            try {
                 pi = PositionInsertion.valueOf(sc.nextLine());
                 valide = true;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 valide = false;
                 System.err.println("Entrez une position valide.");
             }
@@ -57,12 +57,12 @@ class JoueurImpl implements Joueur {
         Scanner sc = new Scanner(System.in);
         Boolean valide = false;
         PositionInsertion pi;
-        while (!valide){
+        while (!valide) {
             System.out.println("Entrez l'endroit où vous voulez insérer le couloir (N1,S2,E3...) : ");
-            try{
+            try {
                 pi = PositionInsertion.valueOf(sc.nextLine());
                 valide = true;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 valide = false;
                 System.err.println("Entrez une position valide.");
             }
