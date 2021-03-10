@@ -16,7 +16,7 @@ class Plateau {
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
-
+        
     }
 
     protected Boolean estAtteignable(Position orig, Position dest) {

@@ -15,7 +15,9 @@ class JeuImpl implements Jeu {
     plateau = new Plateau();
     joueurs = new ArrayList<Joueur>();
     objectifs = new Objectif[24];
-    couloirs();
+    pions = new HashMap<Couleur, Pion>();
+    enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
+    preparer();
     display();
   }
 
@@ -36,6 +38,7 @@ class JeuImpl implements Jeu {
     Pion p = new PionImpl(plateau, couleur.getPositionInitiale());
     pions.put(couleur, p);
     joueur.recevoirPion(p);
+    joueurs.add(joueur);
   }
 
   @Override
@@ -75,6 +78,7 @@ class JeuImpl implements Jeu {
   }
 
   private void preparer() {
+    couloirs();
     Objectif[] objectifs = Objectif.values();
     int nb = objectifs.length / joueurs.size();
     for(Joueur j : joueurs) {
