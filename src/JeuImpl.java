@@ -81,9 +81,9 @@ class JeuImpl implements Jeu {
     couloirs();
     Objectif[] objectifs = Objectif.values();
     int nb = objectifs.length / joueurs.size();
-    for(Joueur j : joueurs) {
+    for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
-      for(int i=0; i<nb; i++) {
+      for (int i = 0; i < nb; i++) {
         tabObj.push(objectifs[RAND.nextInt(objectifs.length)]);
       }
       j.fixerObjectifs(tabObj);
