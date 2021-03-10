@@ -8,4 +8,6 @@ interface Couloir {
     Objectif getObjectif();
 
     List<Pion> getPions();
+
+    Position getPosition();
 }

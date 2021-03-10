@@ -1,9 +1,10 @@
 public class CouloirMobile extends CouloirImpl {
     private boolean posee;
     private Orientation orientation;
+    private Position position;
 
-    public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif) {
-        super(orientation, forme, objectif);
+    public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif, Position position) {
+        super(orientation, forme, objectif, position);
     }
 
     public boolean isPosee() {
@@ -17,22 +18,23 @@ public class CouloirMobile extends CouloirImpl {
     public void decaler(Orientation orientation) {
         switch (orientation) {
         case NORD:
-            // x + 1;
+            this.position = new Position(this.position.x() + 1, this.position.y());
             break;
         case SUD:
-            // x - 1;
+            this.position = new Position(this.position.x() - 1, this.position.y());
             break;
         case OUEST:
-            // y + 1;
+            this.position = new Position(this.position.x(), this.position.y() + 1);
             break;
         case EST:
-            // y - 1;
+            this.position = new Position(this.position.x(), this.position.y() - 1);
             break;
         }
     }
 
     public void setOrientation(Orientation orientation) {
-        if (!posee) this.orientation = orientation;
+        if (!posee)
+            this.orientation = orientation;
     }
 
 }

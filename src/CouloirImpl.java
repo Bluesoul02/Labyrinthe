@@ -6,11 +6,13 @@ class CouloirImpl implements Couloir {
     private Forme forme;
     private Objectif objectif;
     private List<Pion> pions;
+    private Position position;
 
-    public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif) {
+    public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position position) {
         this.orientation = orientation;
         this.forme = forme;
         this.objectif = objectif;
+        this.position = position;
         this.pions = new ArrayList<Pion>();
     }
 
@@ -32,5 +34,10 @@ class CouloirImpl implements Couloir {
     @Override
     public List<Pion> getPions() {
         return pions;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
     }
 }
