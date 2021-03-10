@@ -7,7 +7,7 @@ class Plateau {
     private static final Random RAND = new Random();
 
     Plateau() {
-        couloirs = new List<>();
+        couloirs = new ArrayList<Couloir>();
     }
 
     protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
