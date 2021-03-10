@@ -18,16 +18,16 @@ public class CouloirMobile extends CouloirImpl {
     public void decaler(Orientation orientation) {
         switch (orientation) {
         case NORD:
-            this.position = new Position(this.position.x() + 1, this.position.y());
-            break;
-        case SUD:
-            this.position = new Position(this.position.x() - 1, this.position.y());
-            break;
-        case OUEST:
             this.position = new Position(this.position.x(), this.position.y() + 1);
             break;
-        case EST:
+        case SUD:
             this.position = new Position(this.position.x(), this.position.y() - 1);
+            break;
+        case OUEST:
+            this.position = new Position(this.position.x() + 1, this.position.y());
+            break;
+        case EST:
+            this.position = new Position(this.position.x() - 1, this.position.y());
             break;
         }
     }

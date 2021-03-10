@@ -37,9 +37,9 @@ class JeuImpl implements Jeu {
 
   @Override
   public List<Couloir> couloirs() {
-    List<Couloir> couloirs = new List<Couloir>();
+    List<Couloir> couloirs = new ArrayList<Couloir>();
     Random rand = new Random();
-    List<Integer> objs = new List<Integer>();
+    List<Integer> objs = new ArrayList<Integer>();
     int stepX = 2;
     int x = 1;
     int y = 0;
@@ -100,6 +100,6 @@ class JeuImpl implements Jeu {
   }
 
   public void display() {
-    JFrame frame = new DisplayWindow(plateau);
+    new DisplayWindow(plateau);
   }
 }
