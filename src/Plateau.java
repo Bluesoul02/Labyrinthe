@@ -13,6 +13,24 @@ class Plateau {
     protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
         Orientation orientation = pos.getOrientation();
         c.decaler(orientation);
+        for (int i = 1; i < 7; i++) {
+            switch (orientation) {
+            case NORD:
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() + i));
+                break;
+            case SUD:
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() - i));
+                break;
+            case EST:
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() + i, c.getPosition().y()));
+                break;
+            case OUEST:
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() - i, c.getPosition().y()));
+                break;
+            }
+            c.decaler(orientation);
+        }
+        return c;
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
@@ -32,14 +50,14 @@ class Plateau {
 
         Position[] positions = { new Position(2, 2), new Position(2, 4), new Position(4, 2), new Position(4, 4) };
         Objectif[] objectifs = Objectif.values();
-        for(int i=0; i<4; i++) {
-            new CouloirFixe(orients[i], Forme.TE, objectifs[RAND.nextInt(objectifs.length)], positions[i]);
+        for (int i = 0; i < 4; i++) {
+            new CouloirFixe(orients[i], Forme.TE, objectifs[i], positions[i]);
         }
 
-        int[][] values = {{0,2,0,4},{2,0,4,0},{6,2,6,4},{2,6,4,6}};
-        for(int i=0; i<4; i++) {
-            new CouloirFixe(orients[i], Forme.TE, objectifs[RAND.nextInt(objectifs.length)], new Position(values[i][0],values[i][1]));
-            new CouloirFixe(orients[i], Forme.TE, objectifs[RAND.nextInt(objectifs.length)], new Position(values[i][2],values[i][3]));
+        int[][] values = { { 0, 2, 0, 4 }, { 2, 0, 4, 0 }, { 6, 2, 6, 4 }, { 2, 6, 4, 6 } };
+        for (int i = 0; i < 4; i++) {
+            new CouloirFixe(orients[i], Forme.TE, objectifs[i], new Position(values[i][0], values[i][1]));
+            new CouloirFixe(orients[i], Forme.TE, objectifs[i], new Position(values[i][2], values[i][3]));
         }
     }
 
