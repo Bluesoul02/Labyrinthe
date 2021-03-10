@@ -34,9 +34,11 @@ class Plateau {
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
+        /*
         if(estAtteignable(pion.getPositionCourante(), pos)){
-
-        }
+            pion.
+            return 
+        }*/
         return null;
 
     }
