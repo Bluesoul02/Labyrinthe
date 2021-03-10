@@ -89,6 +89,7 @@ class JeuImpl implements Jeu {
       j.fixerObjectifs(tabObj);
     }
     plateau.setCouloirFixe();
+    plateau.addCouloirsMobiles(couloirs());
   }
 
   private void jouer() {

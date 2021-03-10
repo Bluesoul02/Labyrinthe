@@ -24,10 +24,10 @@ public class CouloirMobile extends CouloirImpl {
             this.position = new Position(this.position.x(), this.position.y() - 1);
             break;
         case OUEST:
-            this.position = new Position(this.position.x() + 1, this.position.y());
+            this.position = new Position(this.position.x() - 1, this.position.y());
             break;
         case EST:
-            this.position = new Position(this.position.x() - 1, this.position.y());
+            this.position = new Position(this.position.x() + 1, this.position.y());
             break;
         }
     }
