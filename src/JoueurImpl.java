@@ -37,42 +37,59 @@ class JoueurImpl implements Joueur {
     protected PositionInsertion choisirPositionInsertionCouloir() {
         Scanner sc = new Scanner(System.in);
         Boolean valide = false;
-        PositionInsertion pi;
+        PositionInsertion pi = null;
         while (!valide){
-            System.out.println("Entrez l'endroit où vous voulez insérer le couloir (N1,S2,E3...) : ");
+            System.out.println("Entrez l'endroit où vous voulez insérer le couloir (N1,S2,E3...) :");
             try{
                 pi = PositionInsertion.valueOf(sc.nextLine());
                 valide = true;
             }catch(IllegalArgumentException e){
                 valide = false;
-                System.err.println("Entrez une position valide.");
+                System.err.println(e.getMessage());
             }
         }
         sc.close();
         return pi;
-
     }
 
     protected Position choisirPositionPion() {
         Scanner sc = new Scanner(System.in);
         Boolean valide = false;
-        PositionInsertion pi;
+        int x = -1;
+        int y = -1;
         while (!valide){
-            System.out.println("Entrez l'endroit où vous voulez insérer le couloir (N1,S2,E3...) : ");
+            System.out.println("Entrez la position où vous voulez déplacer votre pion (x y) :");
+            String[] s = sc.nextLine().split(" ");
             try{
-                pi = PositionInsertion.valueOf(sc.nextLine());
-                valide = true;
-            }catch(IllegalArgumentException e){
-                valide = false;
-                System.err.println("Entrez une position valide.");
+                x = Integer.parseInt(s[0]);
+                y = Integer.parseInt(s[1]);
+                if(x >= 0 && x <= 6 && y >= 0 && y <= 6){
+                    valide = true;
+                }
+            }catch(NumberFormatException e){
+                System.err.println(e.getMessage());
             }
         }
         sc.close();
-        return pi;
+        return new Position(x,y);
     }
 
     protected Orientation choisirOrientationCouloir() {
-
+        Orientation o = null;
+        Scanner sc = new Scanner(System.in);
+        Boolean valide = false;
+        while (!valide){
+            System.out.println("Entrez l'orientation du couloir (NORD, SUD, EST, OUEST) :");
+            try{
+                o = Orientation.valueOf(sc.nextLine());
+                valide = true;
+            }catch(IllegalArgumentException e){
+                valide = false;
+                System.err.println(e.getMessage());
+            }
+        }
+        sc.close();
+        return o;
     }
 
     public Stack<Objectif> getObjectifs() {
