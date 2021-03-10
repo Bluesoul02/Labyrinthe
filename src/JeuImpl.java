@@ -56,7 +56,9 @@ class JeuImpl implements Jeu {
       Objectif obj = null;
       if (hasObj == 0) {
         while (obj == null || objs.contains(obj)) {
-          obj = Objectif.values()[rand.nextInt(24)];
+          int k = rand.nextInt(24);
+          obj = Objectif.values()[k];
+          objs.add(Integer.valueOf(k));
         }
       }
       if (i == 3 || i == 13 || i == 23) {
@@ -74,6 +76,7 @@ class JeuImpl implements Jeu {
 
       CouloirMobile coul = new CouloirMobile(Orientation.values()[or], Forme.values()[f], obj, pos);
       coul.setPosee(true);
+
       couloirs.add(coul);
     }
     return couloirs;
