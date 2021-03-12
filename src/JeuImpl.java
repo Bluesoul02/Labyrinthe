@@ -8,6 +8,7 @@ class JeuImpl implements Jeu {
   private Map<Couleur, Pion> pions;
   private List<Objectif> objectifs;
   private Plateau plateau;
+  private Joueur currentPlayer;
   private static final Random RAND = new Random();
 
   JeuImpl() {
@@ -18,6 +19,11 @@ class JeuImpl implements Jeu {
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
     display();
+    setButtonsListener(); // à faire qaund tout les couloirs sont posés
+  }
+
+  public Joueur getCurrentPlayer() {
+    return currentPlayer;
   }
 
   @Override
@@ -102,7 +108,7 @@ class JeuImpl implements Jeu {
   private void jouer() {
     Joueur joueur = null;
     do {
-      joueur = prochainJoueur(joueur);
+      joueur = prochainJoueur();
       joueur.joue();
     } while (!aGagne(joueur));
   }
@@ -112,21 +118,29 @@ class JeuImpl implements Jeu {
         && joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante());
   }
 
-  private Joueur prochainJoueur(Joueur lastJoueur) {
-    if (lastJoueur == null)
+  protected Joueur prochainJoueur(/* Joueur lastJoueur */) {
+    if (currentPlayer == null)
       return joueurs.get(0);
-    int index = joueurs.indexOf(lastJoueur);
+    int index = joueurs.indexOf(currentPlayer);
     if (index == joueurs.size() - 1)
-      return joueurs.get(0);
+      currentPlayer = joueurs.get(0);
     else
-      return joueurs.get(++index);
+      currentPlayer = joueurs.get(++index);
+    return currentPlayer;
   }
 
-  public void display() {
+  private void display() {
     try {
       new DisplayWindow(plateau);
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  private void setButtonsListener() {
+    for (int i = 0; i < plateau.getCouloirs().size(); i++) {
+      CouloirImpl c = (CouloirImpl) plateau.getCouloirs().get(i);
+      c.addActionListener(new CaseListener(c, this));
     }
   }
 }

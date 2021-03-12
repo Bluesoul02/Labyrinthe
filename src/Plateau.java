@@ -16,20 +16,21 @@ class Plateau {
         for (int i = 1; i < 7; i++) {
             switch (orientation) {
             case NORD:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() + i));
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() + 1));
                 break;
             case SUD:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() - i));
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() - 1));
                 break;
             case EST:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() + i, c.getPosition().y()));
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() + 1, c.getPosition().y()));
                 break;
             case OUEST:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() - i, c.getPosition().y()));
+                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() - 1, c.getPosition().y()));
                 break;
             }
             c.decaler(orientation);
         }
+        couloirs.remove(c); // on enleve le couloir qui n'est plus dans le labyrinthe puis on le retourne
         return c;
     }
 
@@ -171,5 +172,9 @@ class Plateau {
                     return couloirs.get(i);
         }
         return null; // faire une exception?
+    }
+
+    protected List<Couloir> getCouloirs() {
+        return couloirs;
     }
 }

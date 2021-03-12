@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class CouloirImpl implements Couloir {
+import javax.swing.*;
+
+class CouloirImpl extends JButton implements Couloir {
+    private static final long serialVersionUID = -2494896132839690178L;
     private Orientation orientation;
     private Forme forme;
     private Objectif objectif;
@@ -14,6 +17,7 @@ class CouloirImpl implements Couloir {
         this.objectif = objectif;
         this.position = position;
         this.pions = new ArrayList<Pion>();
+        this.setVisible(true);
     }
 
     @Override
