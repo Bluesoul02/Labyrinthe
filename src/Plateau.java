@@ -45,26 +45,44 @@ class Plateau {
 
     }
 
-    protected Position[] getVoisinsAtteignables(Position pos) {
+    protected List<Position> getVoisinsAtteignables(Position pos) {
         List<Orientation> sidesCC = openSide(getCouloir(pos));
+        List<Position> positions = new ArrayList<>();
         Couloir c = null;
-        if (pos.x() - 1 >= 0) {
+        if (pos.x() - 1 >= 0 && sidesCC.contains(Orientation.OUEST)) {
             c = getCouloir(new Position(pos.x() - 1, pos.y()));
-            sidesCC.retainAll(openSide(c));
+            if (accessible(openSide(c), Orientation.EST))
+                positions.add(c.getPosition());
         }
-        if (pos.x() + 1 <= 6) {
+        if (pos.x() + 1 <= 6 && sidesCC.contains(Orientation.EST)) {
             c = getCouloir(new Position(pos.x() + 1, pos.y()));
+            if (accessible(openSide(c), Orientation.OUEST))
+                positions.add(c.getPosition());
         }
-        if (pos.y() - 1 >= 0) {
+        if (pos.y() - 1 >= 0 && sidesCC.contains(Orientation.SUD)) {
             c = getCouloir(new Position(pos.x(), pos.y() - 1));
+            if (accessible(openSide(c), Orientation.NORD))
+                positions.add(c.getPosition());
         }
-        if (pos.y() + 1 <= 6) {
+        if (pos.y() + 1 <= 6 && sidesCC.contains(Orientation.NORD)) {
             c = getCouloir(new Position(pos.x(), pos.y() + 1));
+            if (accessible(openSide(c), Orientation.SUD))
+                positions.add(c.getPosition());
         }
+        return positions;
+    }
+
+    // orientation correspond à l'opposé de la case où nous allons
+    private Boolean accessible(List<Orientation> orientations, Orientation orientation) {
+        for (Orientation o : orientations) {
+            if (o == orientation)
+                return true;
+        }
+        return false;
     }
 
     // retourne toutes les orientations ouvertes ("sans murs")
-    protected List<Orientation> openSide(Couloir c) {
+    private List<Orientation> openSide(Couloir c) {
         List<Orientation> orientations = new ArrayList<>();
         switch (c.getForme()) {
         case TE:
