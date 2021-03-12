@@ -1,8 +1,12 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,18 +16,39 @@ public class GameContainer extends JPanel {
     private static final long serialVersionUID = -1431610534661838728L;
 
     public GameContainer(Plateau plateau) throws IOException {
-        this.setLayout(new GridLayout(7, 7));
+        GridLayout gl = new GridLayout(7, 7);
+        Border emptyBorder = BorderFactory.createEmptyBorder();
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 Couloir c = plateau.getCouloir(new Position(j, i));
                 BufferedImage buf = ImageIO.read(new File("img/" + c.getForme().toString() + ".png"));
-                ImageIcon img = rotateNTime(buf, c.getOrientation().getRotation());
+                ImageIcon img = new ImageIcon(rotateNTime(buf, c.getOrientation().getRotation()));
                 JButton b = new JButton(img);
+                b.setDisabledIcon(img);
                 b.setVisible(true);
+                b.setBorder(emptyBorder);
+                b.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JOptionPane.showMessageDialog(null, "oui");
+
+                    }
+                });
                 this.add(b);
             }
         }
         this.setVisible(true);
+        this.setLayout(gl);
+        // 7 * i + j
+        enableComponents(true);
+    }
+
+    public void enableComponents(boolean enable) {
+        Component[] components = this.getComponents();
+        for (Component component : components) {
+            component.setEnabled(enable);
+        }
     }
 
     private ImageIcon append(Image img1, Image img2) {
@@ -46,10 +71,10 @@ public class GameContainer extends JPanel {
         return new ImageIcon(buf);
     }
 
-    private ImageIcon rotateNTime(BufferedImage buf, int r) {
+    private BufferedImage rotateNTime(BufferedImage buf, int r) {
         for (int i = 0; i < r; i++)
             buf = rotate(buf, 90.0d);
-        return new ImageIcon(buf);
+        return buf;
     }
 
     public BufferedImage rotate(BufferedImage image, Double degrees) {
