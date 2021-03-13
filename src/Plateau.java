@@ -45,40 +45,32 @@ class Plateau {
 
     }
 
+    // retourne la liste des positions atteignables à 1 de portée à partir de pos
     protected List<Position> getVoisinsAtteignables(Position pos) {
         List<Orientation> sidesCC = openSide(getCouloir(pos));
         List<Position> positions = new ArrayList<>();
         Couloir c = null;
         if (pos.x() - 1 >= 0 && sidesCC.contains(Orientation.OUEST)) {
             c = getCouloir(new Position(pos.x() - 1, pos.y()));
-            if (accessible(openSide(c), Orientation.EST))
+            if (openSide(c).contains(Orientation.EST))
                 positions.add(c.getPosition());
         }
         if (pos.x() + 1 <= 6 && sidesCC.contains(Orientation.EST)) {
             c = getCouloir(new Position(pos.x() + 1, pos.y()));
-            if (accessible(openSide(c), Orientation.OUEST))
+            if (openSide(c).contains(Orientation.OUEST))
                 positions.add(c.getPosition());
         }
         if (pos.y() - 1 >= 0 && sidesCC.contains(Orientation.SUD)) {
             c = getCouloir(new Position(pos.x(), pos.y() - 1));
-            if (accessible(openSide(c), Orientation.NORD))
+            if (openSide(c).contains(Orientation.NORD))
                 positions.add(c.getPosition());
         }
         if (pos.y() + 1 <= 6 && sidesCC.contains(Orientation.NORD)) {
             c = getCouloir(new Position(pos.x(), pos.y() + 1));
-            if (accessible(openSide(c), Orientation.SUD))
+            if (openSide(c).contains(Orientation.SUD))
                 positions.add(c.getPosition());
         }
         return positions;
-    }
-
-    // orientation correspond à l'opposé de la case où nous allons
-    private Boolean accessible(List<Orientation> orientations, Orientation orientation) {
-        for (Orientation o : orientations) {
-            if (o == orientation)
-                return true;
-        }
-        return false;
     }
 
     // retourne toutes les orientations ouvertes ("sans murs")
