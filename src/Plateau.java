@@ -42,7 +42,17 @@ class Plateau {
     }
 
     protected Boolean estAtteignable(Position orig, Position dest) {
-
+        List<Position> casesAccessibles = getVoisinsAtteignables(orig);
+        int oldSize = 0;
+        while (casesAccessibles.size() != oldSize)
+            for (int i = oldSize; i < casesAccessibles.size(); i++) {
+                oldSize = casesAccessibles.size();
+                for (Position position : getVoisinsAtteignables(casesAccessibles.get(i))) {
+                    if (!casesAccessibles.contains(position))
+                        casesAccessibles.add(position);
+                }
+            }
+        return casesAccessibles.contains(dest);
     }
 
     // retourne la liste des positions atteignables à 1 de portée à partir de pos
