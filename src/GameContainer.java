@@ -64,15 +64,15 @@ public class GameContainer extends JPanel {
             int h1 = img1.getHeight(null);
             int w2 = img2.getWidth(null);
             int h2 = img2.getHeight(null);
-            int hMax = 0;
-            int wMax = 0;
+            int hMax;
+            int wMax;
 
             hMax = (h1 >= h2) ? h1 : h2;
             wMax = w1 + w2;
             buf = new BufferedImage(wMax, hMax, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2 = buf.createGraphics();
             g2.drawImage(img1, 0, 0, null);
-            g2.drawImage(img2, w1, 0, null);
+            g2.drawImage(img2, w1 / 2, h1 / 2, null);
         }
         return buf;
     }
