@@ -35,7 +35,6 @@ public class DisplayWindow extends JFrame {
         setContentPane(new JPanel());
         getContentPane().add(gc);
         revalidate();
-        gc.repaint();
         
         setVisible(true);
     }

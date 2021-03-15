@@ -14,6 +14,7 @@ public class GameContainer extends JPanel {
     private static final long serialVersionUID = -1431610534661838728L;
 
     public GameContainer(Plateau plateau) throws IOException {
+        JPanel labyrinthe = new JPanel();
         GridLayout gl = new GridLayout(7, 7);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         BufferedImage deco = null;
