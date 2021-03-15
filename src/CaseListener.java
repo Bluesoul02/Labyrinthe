@@ -14,7 +14,7 @@ public class CaseListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        // jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
+        jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
         // test
         JOptionPane.showMessageDialog(null, this.couloir.getPosition().x() + "," + this.couloir.getPosition().y(),
                 "Couloir", 1);
