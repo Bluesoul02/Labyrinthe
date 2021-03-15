@@ -108,11 +108,10 @@ class JeuImpl implements Jeu {
   }
 
   private void jouer() {
-    Joueur joueur = null;
     do {
-      joueur = prochainJoueur();
-      joueur.joue();
-    } while (!aGagne(joueur));
+      prochainJoueur();
+      currentPlayer.joue();
+    } while (!aGagne(currentPlayer));
   }
 
   private boolean aGagne(Joueur joueur) {
