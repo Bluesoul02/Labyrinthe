@@ -17,7 +17,7 @@ public class GameContainer extends JPanel {
         GridLayout gl = new GridLayout(7, 7);
         JPanel labyrinthe = new JPanel();
         labyrinthe.setLayout(gl);
-        labyrinthe.setSize(700,700);
+        labyrinthe.setSize(700, 700);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         BufferedImage deco = null;
         Position pos = null;
@@ -35,12 +35,7 @@ public class GameContainer extends JPanel {
                 buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
                 buf = rotateNTime(buf, couloir.getOrientation().getRotation());
                 if (couloir.getObjectif() != null)
-<<<<<<< HEAD
-                    deco = ImageIO.read(
-                            new File("img/objectifs/" + /* couloir.getObjectif().toString() */"PLACEHOLDER.png"));
-=======
                     deco = ImageIO.read(new File("img/objectifs/" + couloir.getObjectif().toString() + ".png"));
->>>>>>> 06801e74795ddf51fb8a9bfb9f3c57377f7b5331
                 if (deco != null)
                     buf = append(buf, deco);
                 ImageIcon img = new ImageIcon(buf);
@@ -51,7 +46,7 @@ public class GameContainer extends JPanel {
                 labyrinthe.add(couloir);
             }
         }
-        enableComponents(labyrinthe.getComponents());
+        enableComponents(labyrinthe.getComponents(), false);
         labyrinthe.setVisible(true);
         labyrinthe.revalidate();
         this.add(labyrinthe);
@@ -60,7 +55,7 @@ public class GameContainer extends JPanel {
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(new JLabel(""));
-        
+
         JLabel label = new JLabel("Pièce supplémentaire : ");
         label.setFont(new Font("Comic sans MS", Font.BOLD, 20));
         this.add(label);
@@ -69,18 +64,14 @@ public class GameContainer extends JPanel {
         buf = ImageIO.read(new File("img/formes/" + suppl.getForme().toString() + ".png"));
         buf = rotateNTime(buf, suppl.getOrientation().getRotation());
         suppl.setIcon(new ImageIcon(buf));
-        suppl.setBounds(suppl.getX()+100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
-        this.add(suppl);    
+        suppl.setBounds(suppl.getX() + 100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
+        this.add(suppl);
         // 7 * i + j
-<<<<<<< HEAD
-=======
-        enableComponents(false);
->>>>>>> 06801e74795ddf51fb8a9bfb9f3c57377f7b5331
     }
 
-    public void enableComponents(Component[] comp) {
+    public void enableComponents(Component[] comp, Boolean bool) {
         for (Component component : comp) {
-            component.setEnabled(true);
+            component.setEnabled(bool);
         }
     }
 
