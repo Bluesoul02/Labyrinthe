@@ -28,10 +28,12 @@ public class GameContainer extends JPanel {
                 this.add(c);
             }
         }
-        this.setVisible(true);
-        this.setLayout(gl);
+        setSize(700,700);
+        setLayout(gl);
         // 7 * i + j
         enableComponents(true);
+        
+        setVisible(true); 
     }
 
     public void enableComponents(boolean enable) {

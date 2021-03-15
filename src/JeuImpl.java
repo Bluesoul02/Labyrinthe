@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.*;
+import javax.swing.*;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;

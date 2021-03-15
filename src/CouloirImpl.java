@@ -17,7 +17,8 @@ class CouloirImpl extends JButton implements Couloir {
         this.objectif = objectif;
         this.position = position;
         this.pions = new ArrayList<Pion>();
-        this.setVisible(true);
+        setVisible(true);
+        setSize(100,100);
     }
 
     @Override
