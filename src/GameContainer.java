@@ -13,9 +13,11 @@ public class GameContainer extends JPanel {
 
     private static final long serialVersionUID = -1431610534661838728L;
 
-    public GameContainer(Plateau plateau) throws IOException {
-        JPanel labyrinthe = new JPanel();
+    public GameContainer(Plateau plateau, CouloirMobile suppl) throws IOException {
         GridLayout gl = new GridLayout(7, 7);
+        JPanel labyrinthe = new JPanel();
+        labyrinthe.setLayout(gl);
+        labyrinthe.setSize(700,700);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         BufferedImage deco = null;
         Position pos = null;
@@ -34,7 +36,7 @@ public class GameContainer extends JPanel {
                 buf = rotateNTime(buf, couloir.getOrientation().getRotation());
                 if (couloir.getObjectif() != null)
                     deco = ImageIO.read(
-                            new File("img/objectifs/" + /* couloir.getObjectif().toString() */"PLACEHOLDER" + ".png"));
+                            new File("img/objectifs/" + /* couloir.getObjectif().toString() */"PLACEHOLDER.png"));
                 if (deco != null)
                     buf = append(buf, deco);
                 ImageIcon img = new ImageIcon(buf);
@@ -42,21 +44,35 @@ public class GameContainer extends JPanel {
                 couloir.setIcon(img);
                 couloir.setDisabledIcon(img);
                 couloir.setBorder(emptyBorder);
-                this.add(couloir);
+                labyrinthe.add(couloir);
             }
         }
-        setSize(700,700);
-        setLayout(gl);
-        // 7 * i + j
-        enableComponents(true);
+        enableComponents(labyrinthe.getComponents());
+        labyrinthe.setVisible(true);
+        labyrinthe.revalidate();
+        this.add(labyrinthe);
+
+        this.add(new JLabel(""));
+        this.add(new JLabel(""));
+        this.add(new JLabel(""));
+        this.add(new JLabel(""));
         
-        setVisible(true); 
+        JLabel label = new JLabel("Pièce supplémentaire : ");
+        label.setFont(new Font("Comic sans MS", Font.BOLD, 20));
+        this.add(label);
+
+        suppl.setBorder(emptyBorder);
+        buf = ImageIO.read(new File("img/formes/" + suppl.getForme().toString() + ".png"));
+        buf = rotateNTime(buf, suppl.getOrientation().getRotation());
+        suppl.setIcon(new ImageIcon(buf));
+        suppl.setBounds(suppl.getX()+100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
+        this.add(suppl);    
+        // 7 * i + j
     }
 
-    public void enableComponents(boolean enable) {
-        Component[] components = this.getComponents();
-        for (Component component : components) {
-            component.setEnabled(enable);
+    public void enableComponents(Component[] comp) {
+        for (Component component : comp) {
+            component.setEnabled(true);
         }
     }
 

@@ -89,6 +89,7 @@ class JeuImpl implements Jeu {
       couloirs.add(coul);
     }
     this.supplementaire = new CouloirMobile(Orientation.values()[rand.nextInt(4)], Forme.values()[rand.nextInt(3)], null, null);
+    supplementaire.setPosee(false);
     return couloirs;
   }
 
@@ -132,7 +133,7 @@ class JeuImpl implements Jeu {
 
   private void display() {
     try {
-      new DisplayWindow(plateau);
+      new DisplayWindow(plateau, supplementaire);
     } catch (IOException e) {
       e.printStackTrace();
     }
