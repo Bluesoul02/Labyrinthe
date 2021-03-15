@@ -16,16 +16,32 @@ public class GameContainer extends JPanel {
     public GameContainer(Plateau plateau) throws IOException {
         GridLayout gl = new GridLayout(7, 7);
         Border emptyBorder = BorderFactory.createEmptyBorder();
+        BufferedImage deco = null;
+        Position pos = null;
+        BufferedImage buf = null;
+        CouloirImpl couloir = null;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
-                CouloirImpl c = (CouloirImpl) plateau.getCouloir(new Position(j, i));
-                BufferedImage buf = ImageIO.read(new File("img/" + c.getForme().toString() + ".png"));
-                ImageIcon img = new ImageIcon(rotateNTime(buf, c.getOrientation().getRotation()));
+                pos = new Position(j, i);
+                deco = null;
+                for (Couleur couleur : Couleur.values()) {
+                    if (couleur.getPositionInitiale().x() == pos.x() && couleur.getPositionInitiale().y() == pos.y())
+                        deco = ImageIO.read(new File("img/couleurs/" + couleur.toString() + ".png"));
+                }
+                couloir = (CouloirImpl) plateau.getCouloir(pos);
+                buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
+                buf = rotateNTime(buf, couloir.getOrientation().getRotation());
+                if (couloir.getObjectif() != null)
+                    deco = ImageIO.read(
+                            new File("img/objectifs/" + /* couloir.getObjectif().toString() */"PLACEHOLDER" + ".png"));
+                if (deco != null)
+                    buf = append(buf, deco);
+                ImageIcon img = new ImageIcon(buf);
                 // JButton b = new JButton(img);
-                c.setIcon(img);
-                c.setDisabledIcon(img);
-                c.setBorder(emptyBorder);
-                this.add(c);
+                couloir.setIcon(img);
+                couloir.setDisabledIcon(img);
+                couloir.setBorder(emptyBorder);
+                this.add(couloir);
             }
         }
         setSize(700,700);
@@ -43,24 +59,24 @@ public class GameContainer extends JPanel {
         }
     }
 
-    private ImageIcon append(Image img1, Image img2) {
+    private BufferedImage append(Image img1, Image img2) {
         BufferedImage buf = null;
         if (img1 != null && img2 != null) {
             int w1 = img1.getWidth(null);
             int h1 = img1.getHeight(null);
             int w2 = img2.getWidth(null);
             int h2 = img2.getHeight(null);
-            int hMax = 0;
-            int wMax = 0;
+            int hMax;
+            int wMax;
 
             hMax = (h1 >= h2) ? h1 : h2;
             wMax = w1 + w2;
             buf = new BufferedImage(wMax, hMax, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2 = buf.createGraphics();
             g2.drawImage(img1, 0, 0, null);
-            g2.drawImage(img2, w1, 0, null);
+            g2.drawImage(img2, w1 / 2, h1 / 2, null);
         }
-        return new ImageIcon(buf);
+        return buf;
     }
 
     private BufferedImage rotateNTime(BufferedImage buf, int r) {
