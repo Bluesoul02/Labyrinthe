@@ -17,7 +17,7 @@ public class GameContainer extends JPanel {
         GridLayout gl = new GridLayout(7, 7);
         JPanel labyrinthe = new JPanel();
         labyrinthe.setLayout(gl);
-        labyrinthe.setSize(700,700);
+        labyrinthe.setSize(700, 700);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         BufferedImage deco = null;
         Position pos = null;
@@ -46,7 +46,7 @@ public class GameContainer extends JPanel {
                 labyrinthe.add(couloir);
             }
         }
-        enableComponents(labyrinthe.getComponents());
+        enableComponents(labyrinthe.getComponents(), false);
         labyrinthe.setVisible(true);
         labyrinthe.revalidate();
         this.add(labyrinthe);
@@ -55,7 +55,7 @@ public class GameContainer extends JPanel {
         this.add(new JLabel(""));
         this.add(new JLabel(""));
         this.add(new JLabel(""));
-        
+
         JLabel label = new JLabel("Pièce supplémentaire : ");
         label.setFont(new Font("Comic sans MS", Font.BOLD, 20));
         this.add(label);
@@ -64,14 +64,14 @@ public class GameContainer extends JPanel {
         buf = ImageIO.read(new File("img/formes/" + suppl.getForme().toString() + ".png"));
         buf = rotateNTime(buf, suppl.getOrientation().getRotation());
         suppl.setIcon(new ImageIcon(buf));
-        suppl.setBounds(suppl.getX()+100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
-        this.add(suppl);    
+        suppl.setBounds(suppl.getX() + 100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
+        this.add(suppl);
         // 7 * i + j
     }
 
-    public void enableComponents(Component[] comp) {
+    public void enableComponents(Component[] comp, Boolean bool) {
         for (Component component : comp) {
-            component.setEnabled(true);
+            component.setEnabled(bool);
         }
     }
 
