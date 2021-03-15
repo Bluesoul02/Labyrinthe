@@ -21,6 +21,7 @@ class JeuImpl implements Jeu {
     preparer();
     display();
     setButtonsListener(); // à faire qaund tout les couloirs sont posés
+    jouer();
   }
 
   public Joueur getCurrentPlayer() {
@@ -120,15 +121,14 @@ class JeuImpl implements Jeu {
         && joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante());
   }
 
-  protected Joueur prochainJoueur(/* Joueur lastJoueur */) {
+  private void prochainJoueur() {
     if (currentPlayer == null)
-      return joueurs.get(0);
+      currentPlayer = joueurs.get(0);
     int index = joueurs.indexOf(currentPlayer);
     if (index == joueurs.size() - 1)
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
-    return currentPlayer;
   }
 
   private void display() {

@@ -35,8 +35,12 @@ public class GameContainer extends JPanel {
                 buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
                 buf = rotateNTime(buf, couloir.getOrientation().getRotation());
                 if (couloir.getObjectif() != null)
+<<<<<<< HEAD
                     deco = ImageIO.read(
                             new File("img/objectifs/" + /* couloir.getObjectif().toString() */"PLACEHOLDER.png"));
+=======
+                    deco = ImageIO.read(new File("img/objectifs/" + couloir.getObjectif().toString() + ".png"));
+>>>>>>> 06801e74795ddf51fb8a9bfb9f3c57377f7b5331
                 if (deco != null)
                     buf = append(buf, deco);
                 ImageIcon img = new ImageIcon(buf);
@@ -68,6 +72,10 @@ public class GameContainer extends JPanel {
         suppl.setBounds(suppl.getX()+100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
         this.add(suppl);    
         // 7 * i + j
+<<<<<<< HEAD
+=======
+        enableComponents(false);
+>>>>>>> 06801e74795ddf51fb8a9bfb9f3c57377f7b5331
     }
 
     public void enableComponents(Component[] comp) {
