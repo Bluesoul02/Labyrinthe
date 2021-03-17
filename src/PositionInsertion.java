@@ -1,16 +1,25 @@
 enum PositionInsertion {
-    N1(Orientation.NORD), N2(Orientation.NORD), N3(Orientation.NORD), E1(Orientation.EST), E2(Orientation.EST),
-    E3(Orientation.EST), S1(Orientation.SUD), S2(Orientation.SUD), S3(Orientation.SUD), O1(Orientation.OUEST),
-    O2(Orientation.OUEST), O3(Orientation.OUEST);
+    N1(Orientation.NORD, new Position(1, 0)), N2(Orientation.NORD, new Position(3, 0)),
+    N3(Orientation.NORD, new Position(5, 0)), E1(Orientation.EST, new Position(6, 1)),
+    E2(Orientation.EST, new Position(6, 3)), E3(Orientation.EST, new Position(6, 5)),
+    S1(Orientation.SUD, new Position(1, 6)), S2(Orientation.SUD, new Position(3, 6)),
+    S3(Orientation.SUD, new Position(5, 6)), O1(Orientation.OUEST, new Position(0, 1)),
+    O2(Orientation.OUEST, new Position(0, 3)), O3(Orientation.OUEST, new Position(0, 5));
 
     private Orientation orientation;
+    private Position position;
 
-    PositionInsertion(Orientation orientation) {
+    PositionInsertion(Orientation orientation, Position position) {
         this.orientation = orientation;
+        this.position = position;
     }
 
     public Orientation getOrientation() {
         return orientation;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     public PositionInsertion oppose() {

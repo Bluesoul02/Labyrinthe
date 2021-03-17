@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -67,12 +69,22 @@ public class GameContainer extends JPanel {
         suppl.setBounds(suppl.getX() + 100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
         this.add(suppl);
         // 7 * i + j
+        // fonctionne mais à appliquer en exterieur (dans jeu)
+        enablePositionsInsertions(labyrinthe, null, plateau);
     }
 
     public void enableComponents(Component[] comp, Boolean bool) {
         for (Component component : comp) {
             component.setEnabled(bool);
         }
+    }
+
+    // active tout les boutons correspondant avec la position à eviter donnée en
+    // param (null si 1er tour)
+    public void enablePositionsInsertions(Component comp, Position position, Plateau plateau) {
+        for (PositionInsertion positionInser : PositionInsertion.values())
+            if (positionInser.getPosition() != position)
+                ((JButton) plateau.getCouloir(positionInser.getPosition())).setEnabled(true);
     }
 
     private BufferedImage append(Image img1, Image img2) {
