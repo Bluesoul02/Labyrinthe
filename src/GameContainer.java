@@ -68,7 +68,7 @@ public class GameContainer extends JPanel {
         suppl.setEnabled(true);
         this.add(suppl);
         // 7 * i + j
-        // fonctionne mais à appliquer en exterieur (dans jeu)
+        // fonctionne mais a appliquer en exterieur (dans jeu)
         enablePositionsInsertions(labyrinthe, null, plateau);
     }
 
@@ -78,8 +78,8 @@ public class GameContainer extends JPanel {
         }
     }
 
-    // active tout les boutons correspondant avec la position à eviter donnée en
-    // param (null si 1er tour)
+    // active tout les boutons correspondant, avec la position a eviter donnée en
+    // param (null si 1er tour) et le plateau (pour l'acces au couloirs)
     public void enablePositionsInsertions(Component comp, Position position, Plateau plateau) {
         for (PositionInsertion positionInser : PositionInsertion.values())
             if (positionInser.getPosition() != position)

@@ -20,7 +20,7 @@ class JeuImpl implements Jeu {
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
     display();
-    setButtonsListener(); // à faire qaund tout les couloirs sont posés
+    setButtonsListener();
     jouer();
   }
 

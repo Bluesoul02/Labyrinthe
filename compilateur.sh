@@ -25,7 +25,7 @@ then echo "public class Main {
 fi
 
 javac -d bin src/*.java;
-java -classpath bin Main;
+#java -classpath bin Main;
 javadoc -d doc src/*.java;
 
 if test ! -f labyrinthe.mf 
@@ -39,5 +39,5 @@ fi
 
 cd bin
 jar cmf ../labyrinthe.mf ../labyrinthe.jar *.class
-cd ..
-java -jar labyrinthe.jar
+#cd ..
+#java -jar labyrinthe.jar

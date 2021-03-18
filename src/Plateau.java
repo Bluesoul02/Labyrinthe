@@ -55,7 +55,7 @@ class Plateau {
         return casesAccessibles.contains(dest);
     }
 
-    // retourne la liste des positions atteignables à 1 de portée à partir de pos
+    // retourne la liste des positions atteignables a 1 de portee a partir de pos
     protected List<Position> getVoisinsAtteignables(Position pos) {
         List<Orientation> sidesCC = openSide(getCouloir(pos));
         List<Position> positions = new ArrayList<>();
