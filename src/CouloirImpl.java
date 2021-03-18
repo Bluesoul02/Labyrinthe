@@ -5,7 +5,7 @@ import javax.swing.*;
 
 class CouloirImpl extends JButton implements Couloir {
     private static final long serialVersionUID = -2494896132839690178L;
-    private Orientation orientation;
+    protected Orientation orientation;
     private Forme forme;
     private Objectif objectif;
     private List<Pion> pions;

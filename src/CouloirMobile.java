@@ -1,6 +1,6 @@
 public class CouloirMobile extends CouloirImpl {
+    private static final long serialVersionUID = 8131713857177204137L;
     private boolean posee;
-    private Orientation orientation;
     private Position position;
 
     public CouloirMobile(Orientation orientation, Forme forme, Objectif objectif, Position position) {

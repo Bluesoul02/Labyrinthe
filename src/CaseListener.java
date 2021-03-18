@@ -33,9 +33,9 @@ public class CaseListener implements ActionListener {
             Graphics2D g = buf.createGraphics();
             icon.paintIcon(null, g, 0, 0);
             g.dispose();
-            buf = GameContainer.rotateNTime(buf, couloir.getOrientation().getRotation());
+            buf = GameContainer.rotateNTime(buf, 1);
             ((JButton) couloir).setIcon(new ImageIcon(buf));
-            // JOptionPane.showMessageDialog(null, "rotation", "CouloirSuppl", 1);
+            JOptionPane.showMessageDialog(null, couloir.getOrientation().toString(), "CouloirSuppl", 1);
         } else {
 
             jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
