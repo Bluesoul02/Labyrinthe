@@ -89,7 +89,8 @@ class JeuImpl implements Jeu {
 
       couloirs.add(coul);
     }
-    this.supplementaire = new CouloirMobile(Orientation.values()[rand.nextInt(4)], Forme.values()[rand.nextInt(3)], null, null);
+    this.supplementaire = new CouloirMobile(Orientation.values()[rand.nextInt(4)], Forme.values()[rand.nextInt(3)],
+        null, null);
     supplementaire.setPosee(false);
     return couloirs;
   }
@@ -144,5 +145,6 @@ class JeuImpl implements Jeu {
       CouloirImpl c = (CouloirImpl) plateau.getCouloirs().get(i);
       c.addActionListener(new CaseListener(c, this));
     }
+    supplementaire.addActionListener(new CaseListener(supplementaire, this));
   }
 }

@@ -1,7 +1,5 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -67,6 +65,7 @@ public class GameContainer extends JPanel {
         buf = rotateNTime(buf, suppl.getOrientation().getRotation());
         suppl.setIcon(new ImageIcon(buf));
         suppl.setBounds(suppl.getX() + 100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
+        suppl.setEnabled(true);
         this.add(suppl);
         // 7 * i + j
         // fonctionne mais à appliquer en exterieur (dans jeu)
@@ -103,13 +102,13 @@ public class GameContainer extends JPanel {
         return buf;
     }
 
-    private BufferedImage rotateNTime(BufferedImage buf, int r) {
+    public static BufferedImage rotateNTime(BufferedImage buf, int r) {
         for (int i = 0; i < r; i++)
-            buf = rotate(buf, 90.0d);
+            buf = GameContainer.rotate(buf, 90.0d);
         return buf;
     }
 
-    public BufferedImage rotate(BufferedImage image, Double degrees) {
+    private static BufferedImage rotate(BufferedImage image, Double degrees) {
         double radians = Math.toRadians(degrees);
         double sin = Math.abs(Math.sin(radians));
         double cos = Math.abs(Math.cos(radians));
