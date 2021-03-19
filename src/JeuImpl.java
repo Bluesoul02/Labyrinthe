@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.*;
-import javax.swing.*;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -26,6 +25,14 @@ class JeuImpl implements Jeu {
 
   public Joueur getCurrentPlayer() {
     return currentPlayer;
+  }
+
+  public CouloirMobile getSupplementaire() {
+    return supplementaire;
+  }
+
+  public Plateau getPlateau() {
+    return plateau;
   }
 
   @Override

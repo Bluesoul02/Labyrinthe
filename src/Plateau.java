@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.*;
+
 class Plateau {
     private List<Couloir> couloirs;
     private static final Random RAND = new Random();
@@ -10,28 +12,41 @@ class Plateau {
         couloirs = new ArrayList<Couloir>();
     }
 
-    protected CouloirMobile modifierCouloirs(PositionInsertion pos, CouloirMobile c) {
-        Orientation orientation = pos.getOrientation();
-        c.decaler(orientation);
-        for (int i = 1; i < 7; i++) {
+    protected CouloirMobile modifierCouloirs(PositionInsertion posI, CouloirMobile couloirSuppl) {
+        Orientation orientation = posI.getOrientation();
+        CouloirMobile couloirMobile = (CouloirMobile) getCouloir(posI.getPosition());
+        CouloirMobile nextCouloirMobile = null;
+        couloirSuppl.setPosee(true);
+        couloirSuppl.position = posI.getPosition();
+        couloirs.add(couloirSuppl);
+        for (int i = 0; i < 6; i++) {
             switch (orientation) {
             case NORD:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() + 1));
+                nextCouloirMobile = (CouloirMobile) getCouloir(
+                        new Position(couloirMobile.getPosition().x(), couloirMobile.getPosition().y() + 1));
                 break;
             case SUD:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x(), c.getPosition().y() - 1));
-                break;
-            case EST:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() + 1, c.getPosition().y()));
+                nextCouloirMobile = (CouloirMobile) getCouloir(
+                        new Position(couloirMobile.getPosition().x(), couloirMobile.getPosition().y() - 1));
                 break;
             case OUEST:
-                c = (CouloirMobile) getCouloir(new Position(c.getPosition().x() - 1, c.getPosition().y()));
+                nextCouloirMobile = (CouloirMobile) getCouloir(
+                        new Position(couloirMobile.getPosition().x() + 1, couloirMobile.getPosition().y()));
+                break;
+            case EST:
+                nextCouloirMobile = (CouloirMobile) getCouloir(
+                        new Position(couloirMobile.getPosition().x() - 1, couloirMobile.getPosition().y()));
                 break;
             }
-            c.decaler(orientation);
+
+            System.out.println(couloirMobile);
+            System.out.println(couloirMobile.getPosition().x() + ", " + couloirMobile.getPosition().y());
+            couloirMobile.decaler(orientation);
+            couloirMobile = nextCouloirMobile;
         }
-        couloirs.remove(c); // on enleve le couloir qui n'est plus dans le labyrinthe puis on le retourne
-        return c;
+        couloirMobile.setPosee(false);
+        couloirs.remove(couloirMobile); // on enleve le couloir qui n'est plus dans le labyrinthe puis on le retourne
+        return couloirMobile;
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {

@@ -43,6 +43,7 @@ public class GameContainer extends JPanel {
                 couloir.setIcon(img);
                 couloir.setDisabledIcon(img);
                 couloir.setBorder(emptyBorder);
+                gl.addLayoutComponent(couloir.toString(), couloir);
                 labyrinthe.add(couloir);
             }
         }

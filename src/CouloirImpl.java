@@ -9,7 +9,7 @@ class CouloirImpl extends JButton implements Couloir {
     private Forme forme;
     private Objectif objectif;
     private List<Pion> pions;
-    private Position position;
+    protected Position position;
 
     public CouloirImpl(Orientation orientation, Forme forme, Objectif objectif, Position position) {
         this.orientation = orientation;
