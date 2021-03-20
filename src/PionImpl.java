@@ -6,6 +6,7 @@ class PionImpl implements Pion {
     PionImpl(Plateau plateau, Position positionInitiale) {
         this.plateau = plateau;
         this.positionInitiale = positionInitiale;
+        this.positionCourante = positionInitiale;
     }
 
     @Override
@@ -21,7 +22,7 @@ class PionImpl implements Pion {
     public Objectif deplacer(Position pos) {
         Objectif ob = plateau.deplacer(pos, this);
         this.positionCourante = pos;
-        if(ob != null){
+        if (ob != null) {
             return ob;
         }
         return null;

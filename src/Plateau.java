@@ -50,10 +50,13 @@ class Plateau {
     }
 
     protected Objectif deplacer(Position pos, Pion pion) {
-        Couloir couloir = getCouloir(pos);
-        if (couloir != null)
-            couloir.addPion(pion);
-        return couloir.getObjectif();
+        if (estAtteignable(pion.getPositionCourante(), pos)) {
+            Couloir couloir = getCouloir(pos);
+            if (couloir != null)
+                couloir.addPion(pion);
+            return couloir.getObjectif();
+        }
+        return null;
     }
 
     protected Boolean estAtteignable(Position orig, Position dest) {
@@ -94,6 +97,9 @@ class Plateau {
             c = getCouloir(new Position(pos.x(), pos.y() + 1));
             if (openSide(c).contains(Orientation.SUD))
                 positions.add(c.getPosition());
+        }
+        for (Position position : positions) {
+            System.out.println(position.x() + "," + position.y());
         }
         return positions;
     }

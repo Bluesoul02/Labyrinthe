@@ -37,31 +37,35 @@ public class CaseListener implements ActionListener {
             // "CouloirSuppl", 1);
         } else {
             // test
-            JOptionPane.showMessageDialog(null, this.couloir.getPosition().x() + "," + this.couloir.getPosition().y(),
+            JOptionPane.showMessageDialog(null,
+                    this.couloir.getPosition().x() + "," + this.couloir.getPosition().y() + ", "
+                            + this.couloir.toString()
+                            + (this.couloir.getPions().size() != 0 ? this.couloir.getPions().get(0) : "pas de pions"),
                     couloir.getClass().toString(), 1);
 
             // deplacement pion
-            // Objectif objectif =
-            // jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
-            // if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
-            // jeu.getCurrentPlayer().getObjectifs().pop();
-            // }
+            if (!jeu.phaseCouloir) {
+                Objectif objectif = jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
+                if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
+                    jeu.getCurrentPlayer().getObjectifs().pop();
+                }
+                JOptionPane.showMessageDialog(null, jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
+                        + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
+            }
 
             // Pose de couloir
-            PositionInsertion positionInsertion = null;
-            for (PositionInsertion posI : PositionInsertion.values()) {
-                if (posI.getPosition().x() == couloir.getPosition().x()
-                        && posI.getPosition().y() == couloir.getPosition().y())
-                    positionInsertion = posI;
+            if (jeu.phaseCouloir) {
+                PositionInsertion positionInsertion = null;
+                for (PositionInsertion posI : PositionInsertion.values()) {
+                    if (posI.getPosition().x() == couloir.getPosition().x()
+                            && posI.getPosition().y() == couloir.getPosition().y())
+                        positionInsertion = posI;
+                }
+                jeu.modifierCouloirs(positionInsertion, jeu.getSupplementaire().getOrientation());
+                ((GameContainer) ((JButton) couloir).getParent().getParent())
+                        .enableComponents(((JButton) couloir).getParent().getComponents(), true);
+                jeu.phaseCouloir = false;
             }
-            jeu.modifierCouloirs(positionInsertion, jeu.getSupplementaire().getOrientation());
-            ((GameContainer) ((JButton) couloir).getParent().getParent())
-                    .enableComponents(((JButton) couloir).getParent().getComponents(), true);
-
-            // possibilité de faire une variable (Boolean) pour savoir dans quel partie du
-            // tour (on minimise les listeners sur les boutons) nous nous trouvons, créable
-            // dans joueur ou dans jeu (plus opti je pense)
-
         }
     }
 }

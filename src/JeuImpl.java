@@ -9,6 +9,7 @@ class JeuImpl implements Jeu {
   private List<Objectif> objectifs;
   private Plateau plateau;
   private Joueur currentPlayer;
+  protected boolean phaseCouloir;
   private static final Random RAND = new Random();
 
   JeuImpl() {
@@ -16,6 +17,7 @@ class JeuImpl implements Jeu {
     joueurs = new ArrayList<Joueur>();
     objectifs = new ArrayList<>();
     pions = new HashMap<Couleur, Pion>();
+    phaseCouloir = true;
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
     display();
@@ -120,6 +122,7 @@ class JeuImpl implements Jeu {
   private void jouer() {
     do {
       prochainJoueur();
+      phaseCouloir = true;
       currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }
