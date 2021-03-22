@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.*;
-
 class Plateau {
     private List<Couloir> couloirs;
     private static final Random RAND = new Random();
@@ -45,6 +43,7 @@ class Plateau {
             couloirMobile = nextCouloirMobile;
         }
         couloirMobile.setPosee(false);
+        couloirMobile.position = null;
         couloirs.remove(couloirMobile); // on enleve le couloir qui n'est plus dans le labyrinthe puis on le retourne
         return couloirMobile;
     }
@@ -52,6 +51,7 @@ class Plateau {
     protected Objectif deplacer(Position pos, Pion pion) {
         if (estAtteignable(pion.getPositionCourante(), pos)) {
             Couloir couloir = getCouloir(pos);
+            getCouloir(pion.getPositionCourante()).removePion(pion);
             if (couloir != null)
                 couloir.addPion(pion);
             return couloir.getObjectif();
@@ -68,6 +68,7 @@ class Plateau {
                 for (Position position : getVoisinsAtteignables(casesAccessibles.get(i))) {
                     if (!casesAccessibles.contains(position))
                         casesAccessibles.add(position);
+                    System.out.println(position.x() + ", " + position.y() + "\n");
                 }
             }
         return casesAccessibles.contains(dest);
@@ -98,9 +99,10 @@ class Plateau {
             if (openSide(c).contains(Orientation.SUD))
                 positions.add(c.getPosition());
         }
-        for (Position position : positions) {
-            System.out.println(position.x() + "," + position.y());
-        }
+        /*
+         * for (Position position : positions) { System.out.println(position.x() + "," +
+         * position.y()); }
+         */
         return positions;
     }
 

@@ -52,6 +52,8 @@ class JeuImpl implements Jeu {
   @Override
   public void enregistrer(Joueur joueur, Couleur couleur) {
     Pion p = new PionImpl(plateau, couleur.getPositionInitiale());
+    // plateau.getCouloir(couleur.getPositionInitiale()).addPion(p); à placer
+    // quelque part
     pions.put(couleur, p);
     joueur.recevoirPion(p);
     joueurs.add(joueur);

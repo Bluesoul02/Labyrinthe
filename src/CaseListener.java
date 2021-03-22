@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class CaseListener implements ActionListener {
 
@@ -49,12 +50,14 @@ public class CaseListener implements ActionListener {
                 if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
                     jeu.getCurrentPlayer().getObjectifs().pop();
                 }
-                JOptionPane.showMessageDialog(null, jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
-                        + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
+                // JOptionPane.showMessageDialog(null,
+                // jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
+                // + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
             }
 
             // Pose de couloir
             if (jeu.phaseCouloir) {
+                JButton oldSuppl = jeu.getSupplementaire();
                 PositionInsertion positionInsertion = null;
                 for (PositionInsertion posI : PositionInsertion.values()) {
                     if (posI.getPosition().x() == couloir.getPosition().x()
@@ -65,6 +68,9 @@ public class CaseListener implements ActionListener {
                 ((GameContainer) ((JButton) couloir).getParent().getParent())
                         .enableComponents(((JButton) couloir).getParent().getComponents(), true);
                 jeu.phaseCouloir = false;
+                JPanel labyrinthe = (JPanel) ((JButton) couloir).getParent();
+                ((GameContainer) labyrinthe.getParent()).updateLabyrinthe(labyrinthe, jeu.getPlateau(),
+                        jeu.getSupplementaire(), oldSuppl);
             }
         }
     }

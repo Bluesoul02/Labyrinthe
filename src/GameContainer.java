@@ -39,7 +39,6 @@ public class GameContainer extends JPanel {
                 if (deco != null)
                     buf = append(buf, deco);
                 ImageIcon img = new ImageIcon(buf);
-                // JButton b = new JButton(img);
                 couloir.setIcon(img);
                 couloir.setDisabledIcon(img);
                 couloir.setBorder(emptyBorder);
@@ -71,6 +70,25 @@ public class GameContainer extends JPanel {
         // 7 * i + j
         // fonctionne mais a appliquer en exterieur (dans jeu)
         enablePositionsInsertions(labyrinthe, null, plateau);
+    }
+
+    public void updateLabyrinthe(JPanel labyrinthe, Plateau plateau, JButton suppl, JButton oldSuppl) {
+        Component[] buttons = labyrinthe.getComponents();
+        Position pos = null;
+        this.remove(oldSuppl);
+        suppl.setBounds(oldSuppl.getBounds());
+        suppl.setEnabled(true);
+        this.add(suppl);
+        labyrinthe.removeAll();
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                pos = new Position(j, i);
+                Couloir couloir = plateau.getCouloir(pos);
+                labyrinthe.add((JButton) couloir);
+            }
+        }
+        labyrinthe.validate();
+        enableComponents(buttons, true);
     }
 
     public void enableComponents(Component[] comp, Boolean bool) {
