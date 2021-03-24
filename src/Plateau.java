@@ -48,7 +48,7 @@ class Plateau {
         return couloirMobile;
     }
 
-    protected Objectif deplacer(Position pos, Pion pion) {
+    protected Objectif deplacer(Position pos, Pion pion) throws NonAtteignableException {
         if (estAtteignable(pion.getPositionCourante(), pos)) {
             Couloir couloir = getCouloir(pos);
             getCouloir(pion.getPositionCourante()).removePion(pion);
@@ -56,7 +56,7 @@ class Plateau {
                 couloir.addPion(pion);
             return couloir.getObjectif();
         }
-        return null;
+        throw new NonAtteignableException();
     }
 
     protected Boolean estAtteignable(Position orig, Position dest) {
@@ -68,9 +68,12 @@ class Plateau {
                 for (Position position : getVoisinsAtteignables(casesAccessibles.get(i))) {
                     if (!casesAccessibles.contains(position))
                         casesAccessibles.add(position);
-                    System.out.println(position.x() + ", " + position.y() + "\n");
                 }
             }
+        // for (Position position : casesAccessibles) {
+        // System.out.println(position.x() + ", " + position.y() + "\n");
+        // }
+        System.out.println("deplacement");
         return casesAccessibles.contains(dest);
     }
 
@@ -89,14 +92,14 @@ class Plateau {
             if (openSide(c).contains(Orientation.OUEST))
                 positions.add(c.getPosition());
         }
-        if (pos.y() - 1 >= 0 && sidesCC.contains(Orientation.SUD)) {
+        if (pos.y() - 1 >= 0 && sidesCC.contains(Orientation.NORD)) {
             c = getCouloir(new Position(pos.x(), pos.y() - 1));
-            if (openSide(c).contains(Orientation.NORD))
+            if (openSide(c).contains(Orientation.SUD))
                 positions.add(c.getPosition());
         }
-        if (pos.y() + 1 <= 6 && sidesCC.contains(Orientation.NORD)) {
+        if (pos.y() + 1 <= 6 && sidesCC.contains(Orientation.SUD)) {
             c = getCouloir(new Position(pos.x(), pos.y() + 1));
-            if (openSide(c).contains(Orientation.SUD))
+            if (openSide(c).contains(Orientation.NORD))
                 positions.add(c.getPosition());
         }
         /*

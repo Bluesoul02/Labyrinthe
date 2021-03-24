@@ -37,13 +37,6 @@ public class CaseListener implements ActionListener {
             // JOptionPane.showMessageDialog(null, couloir.getOrientation().toString(),
             // "CouloirSuppl", 1);
         } else {
-            // test
-            JOptionPane.showMessageDialog(null,
-                    this.couloir.getPosition().x() + "," + this.couloir.getPosition().y() + ", "
-                            + this.couloir.toString()
-                            + (this.couloir.getPions().size() != 0 ? this.couloir.getPions().get(0) : "pas de pions"),
-                    couloir.getClass().toString(), 1);
-
             // deplacement pion
             if (!jeu.phaseCouloir) {
                 Objectif objectif = jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
@@ -72,6 +65,12 @@ public class CaseListener implements ActionListener {
                 ((GameContainer) labyrinthe.getParent()).updateLabyrinthe(labyrinthe, jeu.getPlateau(),
                         jeu.getSupplementaire(), oldSuppl);
             }
+            // test
+            JOptionPane.showMessageDialog(null,
+                    this.couloir.getPosition().x() + "," + this.couloir.getPosition().y() + ", "
+                            + this.couloir.toString()
+                            + (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas de pions"),
+                    couloir.getClass().toString(), 1);
         }
     }
 }
