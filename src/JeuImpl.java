@@ -20,6 +20,9 @@ class JeuImpl implements Jeu {
     phaseCouloir = true;
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
+    for (Couleur couleur : Couleur.values()) {
+      plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
+    }
     display();
     setButtonsListener();
     jouer();
@@ -52,8 +55,6 @@ class JeuImpl implements Jeu {
   @Override
   public void enregistrer(Joueur joueur, Couleur couleur) {
     Pion p = new PionImpl(plateau, couleur.getPositionInitiale());
-    // plateau.getCouloir(couleur.getPositionInitiale()).addPion(p); à placer
-    // quelque part
     pions.put(couleur, p);
     joueur.recevoirPion(p);
     joueurs.add(joueur);

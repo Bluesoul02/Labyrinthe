@@ -17,7 +17,6 @@ public class GameContainer extends JPanel {
         GridLayout gl = new GridLayout(7, 7);
         JPanel labyrinthe = new JPanel();
         labyrinthe.setLayout(gl);
-        labyrinthe.setSize(700, 700);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         BufferedImage deco = null;
         Position pos = null;
@@ -47,6 +46,7 @@ public class GameContainer extends JPanel {
             }
         }
         enableComponents(labyrinthe.getComponents(), false);
+        // this.add(new JScrollPane(labyrinthe));
         labyrinthe.setVisible(true);
         labyrinthe.revalidate();
         this.add(labyrinthe);
@@ -68,7 +68,7 @@ public class GameContainer extends JPanel {
         suppl.setEnabled(true);
         this.add(suppl);
         // 7 * i + j
-        // fonctionne mais a appliquer en exterieur (dans jeu)
+        // fonctionne mais a appliquer en exterieur (dans jeu ou CaseListener)
         enablePositionsInsertions(labyrinthe, null, plateau);
     }
 
