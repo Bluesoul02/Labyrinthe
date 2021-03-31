@@ -20,6 +20,7 @@ public class CaseListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        JPanel labyrinthe = (JPanel) ((JButton) couloir).getParent();
         // si couloirSuppl
         if (couloir.getClass() == CouloirMobile.class && ((CouloirMobile) couloir).isPosee() == false) {
             int rot = couloir.getOrientation().getRotation();
@@ -39,7 +40,8 @@ public class CaseListener implements ActionListener {
         } else {
             // deplacement pion
             if (!jeu.phaseCouloir) {
-                Objectif objectif = jeu.getCurrentPlayer().getPion().deplacer(couloir.getPosition());
+                Pion pion = jeu.getCurrentPlayer().getPion();
+                Objectif objectif = pion.deplacer(couloir.getPosition());
                 if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
                     jeu.getCurrentPlayer().getObjectifs().pop();
                 }
@@ -61,7 +63,6 @@ public class CaseListener implements ActionListener {
                 ((GameContainer) ((JButton) couloir).getParent().getParent())
                         .enableComponents(((JButton) couloir).getParent().getComponents(), true);
                 jeu.phaseCouloir = false;
-                JPanel labyrinthe = (JPanel) ((JButton) couloir).getParent();
                 ((GameContainer) labyrinthe.getParent()).updateLabyrinthe(labyrinthe, jeu.getPlateau(),
                         jeu.getSupplementaire(), oldSuppl);
             }

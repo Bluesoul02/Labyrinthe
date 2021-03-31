@@ -19,7 +19,7 @@ public class DisplayWindow extends JFrame {
         addWindowListener(l);
 
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize().getSize();
-        setSize((int)screen.getWidth(), (int)screen.getHeight()-30);
+        setSize((int) screen.getWidth(), (int) screen.getHeight() - 30);
         setResizable(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
