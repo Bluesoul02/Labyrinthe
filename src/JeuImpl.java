@@ -155,11 +155,7 @@ class JeuImpl implements Jeu {
   }
 
   private void display() {
-    try {
-      new DisplayWindow(plateau, supplementaire);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    new MenuContainer(this, plateau, supplementaire);
   }
 
   private void setButtonsListener() {
