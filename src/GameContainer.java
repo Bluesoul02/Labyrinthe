@@ -36,7 +36,7 @@ public class GameContainer extends JPanel {
                 if (couloir.getObjectif() != null)
                     deco = ImageIO.read(new File("img/objectifs/" + couloir.getObjectif().toString() + ".png"));
                 if (deco != null)
-                    buf = append(buf, deco);
+                    buf = GameContainer.append(buf, deco);
                 ImageIcon img = new ImageIcon(buf);
                 couloir.setIcon(img);
                 couloir.setDisabledIcon(img);
@@ -67,9 +67,6 @@ public class GameContainer extends JPanel {
         suppl.setBounds(suppl.getX() + 100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
         suppl.setEnabled(true);
         this.add(suppl);
-        // 7 * i + j
-        // fonctionne mais a appliquer en exterieur (dans jeu ou CaseListener)
-        enablePositionsInsertions(labyrinthe, null, plateau);
     }
 
     public void updateLabyrinthe(JPanel labyrinthe, Plateau plateau, JButton suppl, JButton oldSuppl) {
@@ -105,7 +102,7 @@ public class GameContainer extends JPanel {
                 ((JButton) plateau.getCouloir(positionInser.getPosition())).setEnabled(true);
     }
 
-    private BufferedImage append(Image img1, Image img2) {
+    public static BufferedImage append(Image img1, Image img2) {
         BufferedImage buf = null;
         if (img1 != null && img2 != null) {
             int w1 = img1.getWidth(null);
