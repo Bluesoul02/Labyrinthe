@@ -29,6 +29,7 @@ class JeuImpl implements Jeu {
       plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
     }
     setButtonsListener();
+    jouer();
   }
 
   public Joueur getCurrentPlayer() {
