@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.*;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
   private PositionInsertion positionOrigine;
@@ -123,10 +126,16 @@ class JeuImpl implements Jeu {
   }
 
   private void jouer() {
+    JPanel labyrinthe = (JPanel) ((JButton) plateau.getCouloirs().get(0)).getParent();
+    phaseCouloir = true;
+    // à ajouter dans la boucle sans erreur
+    ((GameContainer) labyrinthe.getParent()).enablePositionsInsertions(labyrinthe, null, plateau);
     do {
       prochainJoueur();
-      phaseCouloir = true;
-      currentPlayer.joue();
+      // mettre phaseCouloir à true à la fin du tour
+      while (!phaseCouloir)
+        ;
+      // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }
 
