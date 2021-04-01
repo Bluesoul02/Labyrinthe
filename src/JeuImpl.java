@@ -18,14 +18,14 @@ class JeuImpl implements Jeu {
     objectifs = new ArrayList<>();
     pions = new HashMap<Couleur, Pion>();
     phaseCouloir = true;
-    enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
+  }
+  
+  public void startGame() {
     preparer();
     for (Couleur couleur : Couleur.values()) {
       plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
     }
-    display();
     setButtonsListener();
-    jouer();
   }
 
   public Joueur getCurrentPlayer() {
@@ -143,10 +143,6 @@ class JeuImpl implements Jeu {
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
-  }
-
-  private void display() {
-    new MenuContainer(this, plateau, supplementaire);
   }
 
   private void setButtonsListener() {

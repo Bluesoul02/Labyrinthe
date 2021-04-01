@@ -7,18 +7,18 @@ import java.io.IOException;
 public class MenuContainer extends JFrame {
     
     private static final long serialVersionUID = -6870797015186432927L;
-    private Jeu jeu;
+    private JeuImpl jeu;
     private JPanel panel;
 
-    public MenuContainer(Jeu jeu, Plateau plateau, CouloirMobile suppl) {
+    public MenuContainer() {
         super("Labyrinthe");
-        this.jeu = jeu;
+        this.jeu = new JeuImpl();
         this.panel = new JPanel();
-        establishContainer(plateau, suppl);
+        establishContainer();
         repaint();
     }
 
-    public void establishContainer(Plateau plateau, CouloirMobile suppl) {
+    public void establishContainer() {
         WindowListener l = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -63,8 +63,9 @@ public class MenuContainer extends JFrame {
         startGame.setVisible(true);
         startGame.setEnabled(true);
         startGame.addActionListener((ActionEvent e) -> {
+        	jeu.startGame();
         	try {
-				setContentPane(new GameContainer(plateau, suppl));
+				setContentPane(new GameContainer(jeu.getPlateau(), jeu.getSupplementaire()));
 	            repaint();
 	            revalidate();
 			} catch (IOException e1) {

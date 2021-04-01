@@ -17,6 +17,7 @@ class JoueurImpl implements Joueur {
     }
 
     public void joue() {
+    	System.out.println("WOW");
         jeu.modifierCouloirs(choisirPositionInsertionCouloir(), choisirOrientationCouloir());
         Objectif objectif = pion.deplacer(choisirPositionPion());
         if (objectif == objectifs.peek()) {
