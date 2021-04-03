@@ -105,7 +105,7 @@ public class GameContainer extends JPanel {
                 ((JButton) plateau.getCouloir(positionInser.getPosition())).setEnabled(true);
     }
 
-    private BufferedImage append(Image img1, Image img2) {
+    public static BufferedImage append(Image img1, Image img2) {
         BufferedImage buf = null;
         if (img1 != null && img2 != null) {
             int w1 = img1.getWidth(null);
