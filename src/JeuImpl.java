@@ -28,6 +28,9 @@ class JeuImpl implements Jeu {
       plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
     }
     setButtonsListener();
+  }
+
+  public void play() {
     jouer();
   }
 
@@ -128,13 +131,11 @@ class JeuImpl implements Jeu {
   private void jouer() {
     JPanel labyrinthe = (JPanel) ((JButton) plateau.getCouloirs().get(0)).getParent();
     phaseCouloir = true;
-    // à ajouter dans la boucle sans erreur
+    // a ajouter dans la boucle sans erreur
     ((GameContainer) labyrinthe.getParent()).enablePositionsInsertions(labyrinthe, null, plateau);
     do {
       prochainJoueur();
-      // mettre phaseCouloir a true à la fin du tour
-      while (!phaseCouloir)
-        ;
+      // mettre phaseCouloir à true à la fin du tour
       // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }

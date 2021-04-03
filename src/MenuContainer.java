@@ -63,11 +63,12 @@ public class MenuContainer extends JFrame {
         startGame.setVisible(true);
         startGame.setEnabled(true);
         startGame.addActionListener((ActionEvent e) -> {
+        	dispose();
         	jeu.startGame();
         	try {
-				setContentPane(new GameContainer(jeu.getPlateau(), jeu.getSupplementaire()));
-	            repaint();
-	            revalidate();
+				new DisplayWindow(jeu.getPlateau(), jeu.getSupplementaire());
+				System.out.println("WOW1");
+				jeu.play();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
