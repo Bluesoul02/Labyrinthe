@@ -26,9 +26,9 @@ class JeuImpl implements Jeu {
     phaseCouloir = true;
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
-    preparerPions();
     display();
     setButtonsListener();
+    preparerPions();
     jouer();
   }
 
