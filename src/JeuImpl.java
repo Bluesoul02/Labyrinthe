@@ -1,7 +1,5 @@
+import java.io.IOException;
 import java.util.*;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -20,17 +18,13 @@ class JeuImpl implements Jeu {
     objectifs = new ArrayList<>();
     pions = new HashMap<Couleur, Pion>();
     phaseCouloir = true;
-  }
-
-  public void startGame() {
+    enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
     for (Couleur couleur : Couleur.values()) {
       plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
     }
+    display();
     setButtonsListener();
-  }
-
-  public void play() {
     jouer();
   }
 
@@ -129,14 +123,10 @@ class JeuImpl implements Jeu {
   }
 
   private void jouer() {
-    JPanel labyrinthe = (JPanel) ((JButton) plateau.getCouloirs().get(0)).getParent();
-    phaseCouloir = true;
-    // a ajouter dans la boucle sans erreur
-    ((GameContainer) labyrinthe.getParent()).enablePositionsInsertions(labyrinthe, null, plateau);
     do {
       prochainJoueur();
-      // mettre phaseCouloir à true à la fin du tour
-      // currentPlayer.joue();
+      phaseCouloir = true;
+      currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }
 
@@ -153,6 +143,14 @@ class JeuImpl implements Jeu {
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
+  }
+
+  private void display() {
+    try {
+      new DisplayWindow(plateau, supplementaire);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   private void setButtonsListener() {

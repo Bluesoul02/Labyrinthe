@@ -1,5 +1,5 @@
 public class JeuFactory {
-    public void createJeu() {
-        new MenuContainer();
+    public Jeu createJeu() {
+        return new JeuImpl();
     }
 }
