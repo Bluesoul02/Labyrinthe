@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.*;
 
 import javax.swing.JButton;
@@ -22,7 +21,7 @@ class JeuImpl implements Jeu {
     pions = new HashMap<Couleur, Pion>();
     phaseCouloir = true;
   }
-  
+
   public void startGame() {
     preparer();
     for (Couleur couleur : Couleur.values()) {
@@ -133,7 +132,7 @@ class JeuImpl implements Jeu {
     ((GameContainer) labyrinthe.getParent()).enablePositionsInsertions(labyrinthe, null, plateau);
     do {
       prochainJoueur();
-      // mettre phaseCouloir à true à la fin du tour
+      // mettre phaseCouloir a true à la fin du tour
       while (!phaseCouloir)
         ;
       // currentPlayer.joue();
