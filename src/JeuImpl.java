@@ -1,5 +1,11 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
+
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -20,9 +26,7 @@ class JeuImpl implements Jeu {
     phaseCouloir = true;
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     preparer();
-    for (Couleur couleur : Couleur.values()) {
-      plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
-    }
+    preparerPions();
     display();
     setButtonsListener();
     jouer();
@@ -38,6 +42,32 @@ class JeuImpl implements Jeu {
 
   public Plateau getPlateau() {
     return plateau;
+  }
+
+  public void preparerPions() {
+    BufferedImage buf;
+    BufferedImage deco;
+    for (Couleur couleur : Couleur.values()) {
+      if (pions.get(couleur) != null) {
+        Couloir couloir = plateau.getCouloir(couleur.getPositionInitiale());
+        couloir.addPion(pions.get(couleur));
+        buf = null;
+        deco = null;
+        ((JButton) couloir).setIcon(null);
+        try {
+          deco = ImageIO.read(new File("img/couleurs/" + couleur.toString() + ".png"));
+          buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
+          buf = GameContainer.rotateNTime(buf, couloir.getOrientation().getRotation());
+          buf = GameContainer.append(buf, deco);
+          BufferedImage player = ImageIO.read(new File("img/pion/" + couleur.toString() + ".png"));
+          buf = GameContainer.append(buf, player);
+          ((JButton) couloir).setIcon(new ImageIcon(buf));
+          ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
   @Override
