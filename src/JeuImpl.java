@@ -29,6 +29,9 @@ class JeuImpl implements Jeu {
       plateau.getCouloir(couleur.getPositionInitiale()).addPion(pions.get(couleur));
     }
     setButtonsListener();
+  }
+  
+  public void play() {
     jouer();
   }
 
@@ -134,8 +137,6 @@ class JeuImpl implements Jeu {
     do {
       prochainJoueur();
       // mettre phaseCouloir à true à la fin du tour
-      while (!phaseCouloir)
-        ;
       // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }
