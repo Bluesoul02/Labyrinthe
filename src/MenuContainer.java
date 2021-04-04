@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.io.IOException;
 
 public class MenuContainer extends JFrame {
-    
+
     private static final long serialVersionUID = -6870797015186432927L;
     private JeuImpl jeu;
     private JPanel panel;
@@ -27,12 +27,12 @@ public class MenuContainer extends JFrame {
         addWindowListener(l);
 
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize().getSize();
-        setSize((int)screen.getWidth(), (int)screen.getHeight()-30);
+        setSize((int) screen.getWidth(), (int) screen.getHeight() - 30);
         setResizable(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         JLabel colors = new JLabel("Couleur :");
-        JComboBox allColors = new JComboBox();
+        JComboBox<String> allColors = new JComboBox<String>();
         JLabel age = new JLabel("Âge :");
         JSpinner putAge = new JSpinner();
         JButton validate = new JButton();
@@ -48,28 +48,29 @@ public class MenuContainer extends JFrame {
         allColors.setVisible(true);
         allColors.setEnabled(true);
 
-        putAge.setModel(new SpinnerNumberModel(18,7,100,1));
+        putAge.setModel(new SpinnerNumberModel(18, 7, 100, 1));
         putAge.setVisible(true);
         putAge.setEnabled(true);
-        
+
         validate.setText("Ajouter");
         validate.setVisible(true);
         validate.setEnabled(true);
         validate.addActionListener((ActionEvent e) -> {
-        	jeu.enregistrer(new JoueurImpl((Integer) putAge.getValue(), jeu), Couleur.valueOf((String) allColors.getSelectedItem()));
+            jeu.enregistrer(new JoueurImpl((Integer) putAge.getValue(), jeu),
+                    Couleur.valueOf((String) allColors.getSelectedItem()));
         });
-        
+
         startGame.setText("Jouer");
         startGame.setVisible(true);
         startGame.setEnabled(true);
         startGame.addActionListener((ActionEvent e) -> {
-        	dispose();
-        	try {
-				new DisplayWindow(jeu.getPlateau(), jeu.getSupplementaire());
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+            dispose();
+            try {
+                new DisplayWindow(jeu.getPlateau(), jeu.getSupplementaire());
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         });
 
         panel.add(colors);
@@ -78,7 +79,7 @@ public class MenuContainer extends JFrame {
         panel.add(putAge);
         panel.add(validate);
         panel.add(startGame);
-        
+
         setContentPane(panel);
         setVisible(true);
     }

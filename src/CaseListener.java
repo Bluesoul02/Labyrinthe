@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -50,54 +51,10 @@ public class CaseListener implements ActionListener {
                     jeu.getCurrentPlayer().getObjectifs().pop();
                 }
                 if (oldCouloir != couloir) {
-                    // TO DO redessiner l'icon de couloir en ajoutant le joueur et redessiner
-                    // l'ancienne position du joueur
-                    BufferedImage buf = null;
-                    BufferedImage deco = null;
-                    // on redessine l'ancien couloir
+                    // on redessine l'ancien couloir et le nouveau (destination)
                     try {
-                        ((JButton) oldCouloir).setIcon(null);
-                        for (Couleur couleur : Couleur.values()) {
-                            if (couleur.getPositionInitiale().x() == oldCouloir.getPosition().x()
-                                    && couleur.getPositionInitiale().y() == oldCouloir.getPosition().y())
-                                deco = ImageIO.read(new File("img/couleurs/" + couleur.toString() + ".png"));
-                        }
-                        buf = ImageIO.read(new File("img/formes/" + oldCouloir.getForme().toString() + ".png"));
-                        buf = GameContainer.rotateNTime(buf, oldCouloir.getOrientation().getRotation());
-                        if (oldCouloir.getObjectif() != null)
-                            deco = ImageIO
-                                    .read(new File("img/objectifs/" + oldCouloir.getObjectif().toString() + ".png"));
-                        if (deco != null)
-                            buf = GameContainer.append(buf, deco);
-                        ((JButton) oldCouloir).setIcon(new ImageIcon(buf));
-                        ((JButton) oldCouloir).setDisabledIcon(new ImageIcon(buf));
-
-                        buf = null;
-                        deco = null;
-                        ((JButton) couloir).setIcon(null);
-                        // on dessine le joueur en plus du couloir
-                        Position posI = jeu.getCurrentPlayer().getPion().getPositionInitiale();
-                        Couleur couleurPion = null;
-                        for (Couleur couleur : Couleur.values()) {
-                            if (couleur.getPositionInitiale().x() == couloir.getPosition().x()
-                                    && couleur.getPositionInitiale().y() == couloir.getPosition().y()) {
-                                deco = ImageIO.read(new File("img/couleurs/" + couleur.toString() + ".png"));
-                            }
-                            if (posI.x() == couleur.getPositionInitiale().x()
-                                    && couleur.getPositionInitiale().y() == posI.y())
-                                couleurPion = couleur;
-                        }
-                        buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
-                        buf = GameContainer.rotateNTime(buf, couloir.getOrientation().getRotation());
-                        if (couloir.getObjectif() != null)
-                            deco = ImageIO.read(new File("img/objectifs/" + couloir.getObjectif().toString() + ".png"));
-                        if (deco != null)
-                            buf = GameContainer.append(buf, deco);
-                        BufferedImage player = ImageIO.read(new File("img/pion/" + couleurPion.toString() + ".png"));
-                        if (player != null)
-                            buf = GameContainer.append(buf, player);
-                        ((JButton) couloir).setIcon(new ImageIcon(buf));
-                        ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
+                        drawCouloir(oldCouloir);
+                        drawCouloir(couloir);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -130,5 +87,43 @@ public class CaseListener implements ActionListener {
                             + (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas de pions"),
                     couloir.getClass().toString(), 1);
         }
+    }
+
+    private void drawCouloir(Couloir couloir) throws IOException {
+        BufferedImage buf = null;
+        BufferedImage deco = null;
+        ((JButton) couloir).setIcon(null);
+        for (Couleur couleur : Couleur.values()) {
+            if (couleur.getPositionInitiale().x() == couloir.getPosition().x()
+                    && couleur.getPositionInitiale().y() == couloir.getPosition().y()) {
+                deco = ImageIO.read(new File("img/couleurs/" + couleur.toString() + ".png"));
+            }
+        }
+        buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
+        buf = GameContainer.rotateNTime(buf, couloir.getOrientation().getRotation());
+        if (couloir.getObjectif() != null)
+            deco = ImageIO.read(new File("img/objectifs/" + couloir.getObjectif().toString() + ".png"));
+        if (deco != null)
+            buf = GameContainer.append(buf, deco);
+        List<Pion> pions = couloir.getPions();
+        Couleur couleurPion = null;
+        Position posI;
+        BufferedImage player;
+        for (Pion pion : pions) {
+            posI = pion.getPositionInitiale();
+            player = null;
+            for (Couleur couleur : Couleur.values()) {
+                if (posI.x() == couleur.getPositionInitiale().x() && couleur.getPositionInitiale().y() == posI.y())
+                    couleurPion = couleur;
+            }
+            if (pion.getPositionCourante().x() == couloir.getPosition().x()
+                    && pion.getPositionCourante().y() == couloir.getPosition().y()) {
+                player = ImageIO.read(new File("img/pion/" + couleurPion.toString() + ".png"));
+                if (player != null)
+                    buf = GameContainer.append(buf, player);
+            }
+        }
+        ((JButton) couloir).setIcon(new ImageIcon(buf));
+        ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
     }
 }
