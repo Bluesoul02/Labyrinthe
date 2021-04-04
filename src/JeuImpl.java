@@ -27,9 +27,10 @@ class JeuImpl implements Jeu {
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     enregistrer(new JoueurImpl(16, this), Couleur.VERT);
     preparer();
-    display();
     setButtonsListener();
     preparerPions();
+    prochainJoueur();
+    display();
     jouer();
   }
 
@@ -43,6 +44,10 @@ class JeuImpl implements Jeu {
 
   public Plateau getPlateau() {
     return plateau;
+  }
+
+  public Map<Couleur, Pion> getPions(){
+    return pions;
   }
 
   public void preparerPions() {
@@ -156,8 +161,8 @@ class JeuImpl implements Jeu {
   private void jouer() {
     phaseCouloir = true;
     GameContainer.enablePositionsInsertions(null, plateau);
-    currentPlayer = null;
-    prochainJoueur();
+    //currentPlayer = null;
+    //prochainJoueur();
     do {
       while (!phaseCouloir)
         ;
@@ -182,7 +187,7 @@ class JeuImpl implements Jeu {
 
   private void display() {
     try {
-      new DisplayWindow(plateau, supplementaire);
+      new DisplayWindow(this, supplementaire);
     } catch (IOException e) {
       e.printStackTrace();
     }

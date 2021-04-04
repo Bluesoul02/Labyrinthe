@@ -8,7 +8,7 @@ public class DisplayWindow extends JFrame {
 
     private static final long serialVersionUID = -6870797015186432927L;
 
-    public DisplayWindow(Plateau plateau, CouloirMobile suppl) throws IOException {
+    public DisplayWindow(JeuImpl jeu, CouloirMobile suppl) throws IOException {
         super("Labyrinthe");
 
         WindowListener l = new WindowAdapter() {
@@ -23,7 +23,8 @@ public class DisplayWindow extends JFrame {
         setResizable(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        setContentPane(new GameContainer(plateau, suppl));
+        setContentPane(new GameContainer(jeu.getPlateau(), suppl));
+        getContentPane().add(new InfosJoueurs(jeu));
         setVisible(true);
     }
 }
