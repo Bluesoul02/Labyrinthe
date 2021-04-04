@@ -64,7 +64,7 @@ public class CaseListener implements ActionListener {
                 // deplacement pion
                 Couloir oldCouloir = jeu.getPlateau()
                         .getCouloir(jeu.getCurrentPlayer().getPion().getPositionCourante());
-                if (!jeu.phaseCouloir) {
+                //if (!jeu.phaseCouloir) {
                     Pion pion = jeu.getCurrentPlayer().getPion();
                     Objectif objectif = pion.deplacer(couloir.getPosition());
                     if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
@@ -78,18 +78,20 @@ public class CaseListener implements ActionListener {
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
-                    } else {
+                    }
+                    /*else {
                         // solution pour la fin de tour, possibilité de remplacer par un bouton de fin
                         // de tour
-                        jeu.phaseCouloir = true;
-                        GameContainer.enableComponents(labyrinthe.getComponents(), false);
+                        
+                    }*/
+                    jeu.phaseCouloir = true;
+                    GameContainer.enableComponents(labyrinthe.getComponents(), false);
                         GameContainer.enablePositionsInsertions(null, jeu.getPlateau());
                         jeu.prochainJoueur();
-                    }
                     // JOptionPane.showMessageDialog(null,
                     // jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
                     // + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
-                }
+                //}
             }
 
             // test

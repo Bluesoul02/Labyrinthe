@@ -23,8 +23,7 @@ public class DisplayWindow extends JFrame {
         setResizable(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        setContentPane(new GameContainer(jeu.getPlateau(), suppl));
-        getContentPane().add(new InfosJoueurs(jeu));
+        setContentPane(new GameContainer(jeu.getPlateau(), suppl,new InfosJoueurs(jeu)));
         setVisible(true);
     }
 }

@@ -13,7 +13,7 @@ public class GameContainer extends JPanel {
 
     private static final long serialVersionUID = -1431610534661838728L;
 
-    public GameContainer(Plateau plateau, CouloirMobile suppl) throws IOException {
+    public GameContainer(Plateau plateau, CouloirMobile suppl, InfosJoueurs infosJoueurs) throws IOException {
         GridLayout gl = new GridLayout(7, 7);
         JPanel labyrinthe = new JPanel();
         labyrinthe.setLayout(gl);
@@ -67,6 +67,8 @@ public class GameContainer extends JPanel {
         suppl.setBounds(suppl.getX() + 100, suppl.getY(), suppl.getWidth(), suppl.getHeight());
         suppl.setEnabled(true);
         this.add(suppl);
+        
+        this.add(infosJoueurs);
         // 7 * i + j
     }
 
