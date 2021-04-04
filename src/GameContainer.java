@@ -68,8 +68,6 @@ public class GameContainer extends JPanel {
         suppl.setEnabled(true);
         this.add(suppl);
         // 7 * i + j
-        // fonctionne mais a appliquer en exterieur (dans jeu ou CaseListener)
-        enablePositionsInsertions(labyrinthe, null, plateau);
     }
 
     public void updateLabyrinthe(JPanel labyrinthe, Plateau plateau, JButton suppl, JButton oldSuppl) {
@@ -91,7 +89,8 @@ public class GameContainer extends JPanel {
         enableComponents(buttons, true);
     }
 
-    public void enableComponents(Component[] comp, Boolean bool) {
+    // active tout les composants, a appeller suite à la fin de la phase couloir
+    public static void enableComponents(Component[] comp, Boolean bool) {
         for (Component component : comp) {
             component.setEnabled(bool);
         }
@@ -99,12 +98,13 @@ public class GameContainer extends JPanel {
 
     // active tout les boutons correspondant, avec la position a eviter donnée en
     // param (null si 1er tour) et le plateau (pour l'acces au couloirs)
-    public void enablePositionsInsertions(Component comp, Position position, Plateau plateau) {
+    public static void enablePositionsInsertions(Position position, Plateau plateau) {
         for (PositionInsertion positionInser : PositionInsertion.values())
             if (positionInser.getPosition() != position)
                 ((JButton) plateau.getCouloir(positionInser.getPosition())).setEnabled(true);
     }
 
+    // concatene deux images ensemble avec img2 dessine par dessus img1
     public static BufferedImage append(Image img1, Image img2) {
         BufferedImage buf = null;
         if (img1 != null && img2 != null) {
@@ -121,12 +121,14 @@ public class GameContainer extends JPanel {
         return buf;
     }
 
+    // appelle n fois la fonction rotate (tourne n fois la piece)
     public static BufferedImage rotateNTime(BufferedImage buf, int r) {
         for (int i = 0; i < r; i++)
             buf = GameContainer.rotate(buf, 90.0d);
         return buf;
     }
 
+    // tourne la piece vers la droite
     private static BufferedImage rotate(BufferedImage image, Double degrees) {
         double radians = Math.toRadians(degrees);
         double sin = Math.abs(Math.sin(radians));

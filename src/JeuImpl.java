@@ -25,6 +25,7 @@ class JeuImpl implements Jeu {
     pions = new HashMap<Couleur, Pion>();
     phaseCouloir = true;
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
+    enregistrer(new JoueurImpl(16, this), Couleur.VERT);
     preparer();
     display();
     setButtonsListener();
@@ -153,10 +154,14 @@ class JeuImpl implements Jeu {
   }
 
   private void jouer() {
+    phaseCouloir = true;
+    GameContainer.enablePositionsInsertions(null, plateau);
+    currentPlayer = null;
+    prochainJoueur();
     do {
-      prochainJoueur();
-      phaseCouloir = true;
-      currentPlayer.joue();
+      while (!phaseCouloir)
+        ;
+      // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }
 
@@ -165,7 +170,7 @@ class JeuImpl implements Jeu {
         && joueur.getPion().getPositionInitiale() == joueur.getPion().getPositionCourante());
   }
 
-  private void prochainJoueur() {
+  public void prochainJoueur() {
     if (currentPlayer == null)
       currentPlayer = joueurs.get(0);
     int index = joueurs.indexOf(currentPlayer);
