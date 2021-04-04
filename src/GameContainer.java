@@ -39,7 +39,7 @@ public class GameContainer extends JPanel {
                     buf = append(buf, deco);
                 ImageIcon img = new ImageIcon(buf);
                 couloir.setIcon(img);
-                couloir.setDisabledIcon(img);
+                // couloir.setDisabledIcon(img);
                 couloir.setBorder(emptyBorder);
                 gl.addLayoutComponent(couloir.toString(), couloir);
                 labyrinthe.add(couloir);
@@ -70,6 +70,7 @@ public class GameContainer extends JPanel {
         // 7 * i + j
     }
 
+    // mets à jour le positionnements des composants du labyrinthes
     public void updateLabyrinthe(JPanel labyrinthe, Plateau plateau, JButton suppl, JButton oldSuppl) {
         Component[] buttons = labyrinthe.getComponents();
         Position pos = null;
@@ -98,10 +99,11 @@ public class GameContainer extends JPanel {
 
     // active tout les boutons correspondant, avec la position a eviter donnée en
     // param (null si 1er tour) et le plateau (pour l'acces au couloirs)
-    public static void enablePositionsInsertions(Position position, Plateau plateau) {
-        for (PositionInsertion positionInser : PositionInsertion.values())
-            if (positionInser.getPosition() != position)
+    public static void enablePositionsInsertions(PositionInsertion positionI, Plateau plateau) {
+        for (PositionInsertion positionInser : PositionInsertion.values()) {
+            if (positionI == null || positionInser != positionI)
                 ((JButton) plateau.getCouloir(positionInser.getPosition())).setEnabled(true);
+        }
     }
 
     // concatene deux images ensemble avec img2 dessine par dessus img1

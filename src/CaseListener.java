@@ -53,50 +53,47 @@ public class CaseListener implements ActionListener {
                             && posI.getPosition().y() == couloir.getPosition().y())
                         positionInsertion = posI;
                 }
-                System.out.println(positionInsertion);
+                // System.out.println(positionInsertion);
                 jeu.modifierCouloirs(positionInsertion, jeu.getSupplementaire().getOrientation());
-                ((GameContainer) ((JButton) couloir).getParent().getParent())
-                        .enableComponents(((JButton) couloir).getParent().getComponents(), true);
+                GameContainer.enableComponents(((JButton) couloir).getParent().getComponents(), true);
                 jeu.phaseCouloir = false;
                 ((GameContainer) labyrinthe.getParent()).updateLabyrinthe(labyrinthe, jeu.getPlateau(),
                         jeu.getSupplementaire(), oldSuppl);
+                jeu.lastInsert = positionInsertion;
+                // System.out.println(labyrinthe.getParent().getClass().toString());
             } else {
                 // deplacement pion
                 Couloir oldCouloir = jeu.getPlateau()
                         .getCouloir(jeu.getCurrentPlayer().getPion().getPositionCourante());
-                if (!jeu.phaseCouloir) {
-                    Pion pion = jeu.getCurrentPlayer().getPion();
-                    Objectif objectif = pion.deplacer(couloir.getPosition());
-                    if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
-                        jeu.getCurrentPlayer().getObjectifs().pop();
-                    }
-                    if (oldCouloir != couloir) {
-                        // on redessine l'ancien couloir et le nouveau (destination)
-                        try {
-                            drawCouloir(oldCouloir);
-                            drawCouloir(couloir);
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
-                    } else {
-                        // solution pour la fin de tour, possibilité de remplacer par un bouton de fin
-                        // de tour
-                        jeu.phaseCouloir = true;
-                        GameContainer.enableComponents(labyrinthe.getComponents(), false);
-                        GameContainer.enablePositionsInsertions(null, jeu.getPlateau());
-                        jeu.prochainJoueur();
-                    }
-                    // JOptionPane.showMessageDialog(null,
-                    // jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
-                    // + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
+                Pion pion = jeu.getCurrentPlayer().getPion();
+                Objectif objectif = pion.deplacer(couloir.getPosition());
+                if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
+                    jeu.getCurrentPlayer().getObjectifs().pop();
                 }
+                if (oldCouloir != couloir) {
+                    // on redessine l'ancien couloir et le nouveau (destination)
+                    try {
+                        drawCouloir(oldCouloir);
+                        drawCouloir(couloir);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                } else {
+                    // solution pour la fin de tour, possibilité de remplacer par un bouton de fin
+                    // de tour
+                    jeu.phaseCouloir = true;
+                    GameContainer.enableComponents(labyrinthe.getComponents(), false);
+                    GameContainer.enablePositionsInsertions(jeu.lastInsert.oppose(), jeu.getPlateau());
+                    jeu.prochainJoueur();
+                }
+                // JOptionPane.showMessageDialog(null,
+                // jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
+                // + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
             }
 
             // test
             JOptionPane.showMessageDialog(null,
-                    this.couloir.getPosition().x() + "," + this.couloir.getPosition().y() + ", "
-                            + this.couloir.toString()
-                            + (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas de pions"),
+                    (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas de pions"),
                     couloir.getClass().toString(), 1);
         }
     }
@@ -136,6 +133,6 @@ public class CaseListener implements ActionListener {
             }
         }
         ((JButton) couloir).setIcon(new ImageIcon(buf));
-        ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
+        // ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
     }
 }
