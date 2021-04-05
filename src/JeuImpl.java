@@ -78,9 +78,9 @@ class JeuImpl implements Jeu {
           buf = GameContainer.append(buf, player, false);
           ((JButton) couloir).setIcon(new ImageIcon(buf));
 
-          deco = new BufferedImage(151,151,BufferedImage.TYPE_INT_ARGB);
+          deco = new BufferedImage(151, 151, BufferedImage.TYPE_INT_ARGB);
           Graphics2D graphics = deco.createGraphics();
-          graphics.setColor(new Color(255,255,255,125));
+          graphics.setColor(new Color(255, 255, 255, 125));
           graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
           buf = GameContainer.append(buf, deco, true);
           ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
@@ -179,7 +179,7 @@ class JeuImpl implements Jeu {
       }
       j.fixerObjectifs(tabObj);
     }
-    
+
     this.objectifs = plateau.setCouloirFixe();
     plateau.addCouloirsMobiles(couloirs());
   }

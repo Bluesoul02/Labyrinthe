@@ -37,8 +37,6 @@ class Plateau {
                 break;
             }
 
-            System.out.println(couloirMobile);
-            System.out.println(couloirMobile.getPosition().x() + ", " + couloirMobile.getPosition().y());
             couloirMobile.decaler(orientation);
             couloirMobile = nextCouloirMobile;
         }
@@ -70,10 +68,6 @@ class Plateau {
                         casesAccessibles.add(position);
                 }
             }
-        // for (Position position : casesAccessibles) {
-        // System.out.println(position.x() + ", " + position.y() + "\n");
-        // }
-        System.out.println("deplacement");
         return casesAccessibles.contains(dest);
     }
 
@@ -102,10 +96,6 @@ class Plateau {
             if (openSide(c).contains(Orientation.NORD))
                 positions.add(c.getPosition());
         }
-        /*
-         * for (Position position : positions) { System.out.println(position.x() + "," +
-         * position.y()); }
-         */
         return positions;
     }
 
@@ -211,13 +201,14 @@ class Plateau {
         this.couloirs.addAll(couloirs);
     }
 
+    // retourne le couloir a la position donnée et null si il n'existe pas
     protected Couloir getCouloir(Position pos) {
         for (int i = 0; i < couloirs.size(); i++) {
             if (couloirs.get(i).getPosition().x() == pos.x() && couloirs.get(i).getPosition().y() == pos.y())
                 if (couloirs.get(i).getClass() != CouloirMobile.class || ((CouloirMobile) couloirs.get(i)).isPosee())
                     return couloirs.get(i);
         }
-        return null; // faire une exception?
+        return null;
     }
 
     protected List<Couloir> getCouloirs() {

@@ -21,8 +21,7 @@ class CouloirImpl extends JButton implements Couloir {
         this.position = position;
         this.pions = new ArrayList<Pion>();
         setVisible(true);
-        //System.out.println(dimsScreen.width / 7);
-        setSize(dimsScreen.width / 10, dimsScreen.height/10);
+        setSize(dimsScreen.width / 10, dimsScreen.height / 10);
     }
 
     @Override
