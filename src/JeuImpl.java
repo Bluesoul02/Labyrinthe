@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.util.*;
 
 import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,10 +32,10 @@ class JeuImpl implements Jeu {
     enregistrer(new JoueurImpl(16, this), Couleur.VERT);
     preparer();
     setButtonsListener();
-    preparerPions();
     prochainJoueur();
     infosJoueurs = new InfosJoueurs(this);
     display();
+    preparerPions();
     jouer();
   }
 
@@ -75,7 +77,13 @@ class JeuImpl implements Jeu {
           BufferedImage player = ImageIO.read(new File("img/pion/" + couleur.toString() + ".png"));
           buf = GameContainer.append(buf, player, false);
           ((JButton) couloir).setIcon(new ImageIcon(buf));
-          // ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
+
+          deco = new BufferedImage(151,151,BufferedImage.TYPE_INT_ARGB);
+          Graphics2D graphics = deco.createGraphics();
+          graphics.setColor(new Color(255,255,255,125));
+          graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
+          buf = GameContainer.append(buf, deco, true);
+          ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -155,14 +163,24 @@ class JeuImpl implements Jeu {
   private void preparer() {
     couloirs();
     Objectif[] objectifs = Objectif.values();
+    ArrayList<Objectif> objectifsPris = new ArrayList();
     int nb = objectifs.length / joueurs.size();
     for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
-      for (int i = 0; i < nb; i++) {
-        tabObj.push(objectifs[RAND.nextInt(objectifs.length)]);
+      while(tabObj.size() < nb){
+        for (int i = 0; i < nb; i++) {
+          Objectif objectif = objectifs[RAND.nextInt(objectifs.length)];
+          if(!objectifsPris.contains(objectif)){
+            tabObj.push(objectif);
+            objectifsPris.add(objectif);
+          }
+        }
+        System.out.println(tabObj.size());
       }
       j.fixerObjectifs(tabObj);
+      System.out.println(tabObj);
     }
+    
     this.objectifs = plateau.setCouloirFixe();
     plateau.addCouloirsMobiles(couloirs());
   }

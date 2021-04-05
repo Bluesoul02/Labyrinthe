@@ -1,6 +1,7 @@
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -131,6 +132,11 @@ public class CaseListener implements ActionListener {
             }
         }
         ((JButton) couloir).setIcon(new ImageIcon(buf));
-        // ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
+        deco = new BufferedImage(151,151,BufferedImage.TYPE_INT_ARGB);
+                Graphics2D graphics = deco.createGraphics();
+                graphics.setColor(new Color(255,255,255,125));
+                graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
+        buf = GameContainer.append(buf, deco, true);
+        ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
     }
 }

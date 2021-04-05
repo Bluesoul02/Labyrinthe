@@ -22,8 +22,6 @@ public class DisplayWindow extends JFrame {
         setBounds(0,0,screen.width, screen.height);
         setResizable(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new Color(232, 164, 130));
-
         setContentPane(new GameContainer(jeu.getPlateau(), suppl));
         this.add(jeu.getInfosJoueurs());
         setVisible(true);

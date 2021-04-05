@@ -15,6 +15,7 @@ public class GameContainer extends JPanel {
     private static final Dimension dimsScreen = Toolkit.getDefaultToolkit().getScreenSize();
 
     public GameContainer(Plateau plateau, CouloirMobile suppl) throws IOException {
+        //setSize(dimsScreen.width -300, dimsScreen.height-300);
         GridLayout gl = new GridLayout(7, 7);
         JPanel labyrinthe = new JPanel();
         //labyrinthe.setSize(dimsScreen.width-100, dimsScreen.height-100);
