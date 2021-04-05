@@ -29,8 +29,15 @@ class JeuImpl implements Jeu {
     objectifs = new ArrayList<>();
     pions = new HashMap<Couleur, Pion>();
     phaseCouloir = true;
-    enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
-    enregistrer(new JoueurImpl(16, this), Couleur.VERT);
+
+    int nbjoueurs = 0;
+    while (nbjoueurs < 1 || nbjoueurs > 4) {
+      nbjoueurs = Integer.parseInt(JOptionPane.showInputDialog(null, "nombre de joueurs :"));
+    }
+    for (int i = 0; i < nbjoueurs; i++) {
+      enregistrer(new JoueurImpl(0, this), Couleur.values()[i]);
+    }
+
     preparer();
     setButtonsListener();
     prochainJoueur();
