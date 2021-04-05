@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -17,6 +18,7 @@ class JeuImpl implements Jeu {
   private Joueur currentPlayer;
   protected PositionInsertion lastInsert;
   protected boolean phaseCouloir;
+  private InfosJoueurs infosJoueurs;
   private static final Random RAND = new Random();
 
   JeuImpl() {
@@ -28,9 +30,11 @@ class JeuImpl implements Jeu {
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
     enregistrer(new JoueurImpl(16, this), Couleur.VERT);
     preparer();
-    display();
     setButtonsListener();
     preparerPions();
+    prochainJoueur();
+    infosJoueurs = new InfosJoueurs(this);
+    display();
     jouer();
   }
 
@@ -44,6 +48,14 @@ class JeuImpl implements Jeu {
 
   public Plateau getPlateau() {
     return plateau;
+  }
+
+  public Map<Couleur, Pion> getPions(){
+    return pions;
+  }
+
+  public InfosJoueurs getInfosJoueurs(){
+    return infosJoueurs;
   }
 
   public void preparerPions() {
@@ -160,8 +172,8 @@ class JeuImpl implements Jeu {
   private void jouer() {
     phaseCouloir = true;
     GameContainer.enablePositionsInsertions(null, plateau);
-    currentPlayer = null;
-    prochainJoueur();
+    //currentPlayer = null;
+    //prochainJoueur();
     do {
       // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
@@ -180,11 +192,13 @@ class JeuImpl implements Jeu {
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
+    if(infosJoueurs!= null)
+      infosJoueurs.update();
   }
 
   private void display() {
     try {
-      new DisplayWindow(plateau, supplementaire);
+      new DisplayWindow(this, supplementaire);
     } catch (IOException e) {
       e.printStackTrace();
     }
