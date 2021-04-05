@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -34,24 +35,27 @@ public class InfosJoueurs extends JPanel {
 
     public void update() {
         Set<Entry<Couleur, Pion>> mapPions = jeu.getPions().entrySet();
-        Pion pionPremierJoueur = jeu.getCurrentPlayer().getPion();
-        Objectif objectifPile = jeu.getCurrentPlayer().getObjectifs().peek();
-        if(objectifPile == null){
-            for (Entry<Couleur, Pion> e : mapPions) {
-                if (e.getValue() == pionPremierJoueur) {
-                    this.tour.setText(e.getKey()+" doit rentrer à sa base");
-                }
-            }
-            objectif = null;
-        }else{
-            for (Entry<Couleur, Pion> e : mapPions) {
-                if (e.getValue() == pionPremierJoueur) {
-                    this.tour.setText(baseTexte + e.getKey());
+        Pion pionJoueur = jeu.getCurrentPlayer().getPion();
+        try{
+            Objectif objectifPile = jeu.getCurrentPlayer().getObjectifs().peek();
+            for (Entry<Couleur, Pion> p : mapPions) {
+                if (p.getValue() == pionJoueur) {
+                    this.tour.setText(baseTexte + p.getKey());
                 }
             }
             objectif.setIcon(new ImageIcon("img/objectifs/" + objectifPile + ".png"));
+            
+            this.repaint();
+        }catch(EmptyStackException e){
+            for (Entry<Couleur, Pion> p : mapPions) {
+                if (p.getValue() == pionJoueur) {
+                    this.tour.setText(p.getKey()+" doit rentrer à sa base");
+                }
+            }
+            objectif = null;
+            
         }
         
-        this.repaint();
+        
     }
 }

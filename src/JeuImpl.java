@@ -29,7 +29,7 @@ class JeuImpl implements Jeu {
     pions = new HashMap<Couleur, Pion>();
     phaseCouloir = true;
     enregistrer(new JoueurImpl(14, this), Couleur.BLEU);
-    enregistrer(new JoueurImpl(16, this), Couleur.VERT);
+    //enregistrer(new JoueurImpl(16, this), Couleur.VERT);
     preparer();
     setButtonsListener();
     prochainJoueur();
@@ -168,7 +168,7 @@ class JeuImpl implements Jeu {
     for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
 
-      for (int i = 0; i < nbObjectifs; i++) {
+      for (int i = 0; i < 1; i++) {
         Objectif objectif = listeObjectifs[RAND.nextInt(listeObjectifs.length)];
         if (!objectifsPris.contains(objectif)) {
           tabObj.add(objectif);
@@ -182,7 +182,6 @@ class JeuImpl implements Jeu {
 
     this.objectifs = plateau.setCouloirFixe();
     plateau.addCouloirsMobiles(couloirs());
-    System.out.println(this.objectifs);
   }
 
   private void jouer() {
