@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -187,11 +188,13 @@ class JeuImpl implements Jeu {
   private void jouer() {
     phaseCouloir = true;
     GameContainer.enablePositionsInsertions(null, plateau);
-    // currentPlayer = null;
-    // prochainJoueur();
     do {
-      // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
+    for (Couleur couleur : Couleur.values()) {
+      if (currentPlayer.getPion() == pions.get(couleur)) {
+        JOptionPane.showMessageDialog(null, couleur.toString() + " a gagné!");
+      }
+    }
   }
 
   private boolean aGagne(Joueur joueur) {
