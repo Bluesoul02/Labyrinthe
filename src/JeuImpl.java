@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -31,10 +30,10 @@ class JeuImpl implements Jeu {
     enregistrer(new JoueurImpl(16, this), Couleur.VERT);
     preparer();
     setButtonsListener();
-    preparerPions();
     prochainJoueur();
     infosJoueurs = new InfosJoueurs(this);
     display();
+    preparerPions();
     jouer();
   }
 
