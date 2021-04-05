@@ -10,7 +10,6 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class CaseListener implements ActionListener {
@@ -53,13 +52,18 @@ public class CaseListener implements ActionListener {
                             && posI.getPosition().y() == couloir.getPosition().y())
                         positionInsertion = posI;
                 }
-                // System.out.println(positionInsertion);
                 jeu.modifierCouloirs(positionInsertion, jeu.getSupplementaire().getOrientation());
                 GameContainer.enableComponents(((JButton) couloir).getParent().getComponents(), true);
                 jeu.phaseCouloir = false;
                 ((GameContainer) labyrinthe.getParent()).updateLabyrinthe(labyrinthe, jeu.getPlateau(),
                         jeu.getSupplementaire(), oldSuppl);
                 jeu.lastInsert = positionInsertion;
+                try {
+                    drawCouloir((CouloirMobile) oldSuppl);
+                    // drawCouloir(jeu.getSupplementaire());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             } else {
                 // deplacement pion
                 Couloir oldCouloir = jeu.getPlateau()
@@ -69,7 +73,8 @@ public class CaseListener implements ActionListener {
                 if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
                     jeu.getCurrentPlayer().getObjectifs().pop();
                 }
-                if (oldCouloir != couloir && (!oldCouloir.getPions().contains(pion))) {
+                if (jeu.getPlateau().getVoisinsAtteignables(oldCouloir.getPosition()).isEmpty()
+                        || (oldCouloir != couloir && (!oldCouloir.getPions().contains(pion)))) {
                     // on redessine l'ancien couloir et le nouveau (destination)
                     try {
                         drawCouloir(oldCouloir);
@@ -82,15 +87,12 @@ public class CaseListener implements ActionListener {
                         e1.printStackTrace();
                     }
                 }
-                // JOptionPane.showMessageDialog(null,
-                // jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
-                // + jeu.getCurrentPlayer().getPion().getPositionCourante().y());
             }
 
-            // test
-            JOptionPane.showMessageDialog(null,
-                    (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas de pions"),
-                    couloir.getClass().toString(), 1);
+            // JOptionPane.showMessageDialog(null,
+            // (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas
+            // de pions"),
+            // couloir.getClass().toString(), 1);
         }
     }
 

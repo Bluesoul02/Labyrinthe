@@ -49,11 +49,11 @@ class JeuImpl implements Jeu {
     return plateau;
   }
 
-  public Map<Couleur, Pion> getPions(){
+  public Map<Couleur, Pion> getPions() {
     return pions;
   }
 
-  public InfosJoueurs getInfosJoueurs(){
+  public InfosJoueurs getInfosJoueurs() {
     return infosJoueurs;
   }
 
@@ -89,11 +89,12 @@ class JeuImpl implements Jeu {
       supplementaire.setOrientation(orientation);
       supplementaire = plateau.modifierCouloirs(pos, supplementaire);
       positionOrigine = pos.oppose();
+      Couloir couloir = plateau.getCouloir(pos.getPosition());
       for (Pion pion : supplementaire.getPions()) {
         pion.poserA(pos);
-        supplementaire.getPions().remove(pion);
-        plateau.getCouloir(pos.getPosition()).getPions().add(pion);
+        couloir.getPions().add(pion);
       }
+      supplementaire.getPions().removeAll(supplementaire.getPions());
     }
   }
 
@@ -169,8 +170,8 @@ class JeuImpl implements Jeu {
   private void jouer() {
     phaseCouloir = true;
     GameContainer.enablePositionsInsertions(null, plateau);
-    //currentPlayer = null;
-    //prochainJoueur();
+    // currentPlayer = null;
+    // prochainJoueur();
     do {
       // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
@@ -189,7 +190,7 @@ class JeuImpl implements Jeu {
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
-    if(infosJoueurs!= null)
+    if (infosJoueurs != null)
       infosJoueurs.update();
   }
 

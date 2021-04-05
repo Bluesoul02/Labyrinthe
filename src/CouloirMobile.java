@@ -29,6 +29,10 @@ public class CouloirMobile extends CouloirImpl {
             this.position = new Position(this.position.x() + (this.position.x() >= 6 ? 0 : 1), this.position.y());
             break;
         }
+        if (!pions.isEmpty())
+            for (Pion pion : pions) {
+                pion.setPositionCourante(this.position);
+            }
     }
 
     public void setOrientation(Orientation orientation) {

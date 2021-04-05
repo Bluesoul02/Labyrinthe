@@ -31,34 +31,12 @@ class PionImpl implements Pion {
     }
 
     public void poserA(PositionInsertion posIns) {
-        Position pos = posInsToPos(posIns);
-        // plateau.deplacer(pos, this);
+        Position pos = posIns.getPosition();
         positionCourante = pos;
     }
 
-    public Position posInsToPos(PositionInsertion posIns) {
-        Position pos;
-        String en = posIns.toString();
-        int x = 0;
-        int y = 0;
-        int en2 = Integer.parseInt(en.substring(1));
-        switch (en.substring(0, 1)) {
-        case "N":
-            x = (en2 * 2) - 1;
-            break;
-        case "E":
-            y = (en2 * 2) - 1;
-            break;
-        case "O":
-            y = 6;
-            x = (en2 * 2) - 1;
-            break;
-        case "S":
-            x = 6;
-            y = (en2 * 2) - 1;
-            break;
-        }
-        pos = new Position(x, y);
-        return pos;
+    @Override
+    public void setPositionCourante(Position pos) {
+        positionCourante = pos;
     }
 }

@@ -82,7 +82,7 @@ public class GameContainer extends JPanel {
         // 7 * i + j
     }
 
-    // mets à jour le positionnements des composants du labyrinthes
+    // mets a jour le positionnements des composants du labyrinthes
     public void updateLabyrinthe(JPanel labyrinthe, Plateau plateau, JButton suppl, JButton oldSuppl) {
         Component[] buttons = labyrinthe.getComponents();
         Position pos = null;
@@ -102,7 +102,7 @@ public class GameContainer extends JPanel {
         enableComponents(buttons, true);
     }
 
-    // active tout les composants, a appeller suite à la fin de la phase couloir
+    // active tout les composants, a appeller suite a la fin de la phase couloir
     public static void enableComponents(Component[] comp, Boolean bool) {
         for (Component component : comp) {
             component.setEnabled(bool);
