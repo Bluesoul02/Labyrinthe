@@ -50,11 +50,11 @@ class JeuImpl implements Jeu {
     return plateau;
   }
 
-  public Map<Couleur, Pion> getPions(){
+  public Map<Couleur, Pion> getPions() {
     return pions;
   }
 
-  public InfosJoueurs getInfosJoueurs(){
+  public InfosJoueurs getInfosJoueurs() {
     return infosJoueurs;
   }
 
@@ -172,8 +172,8 @@ class JeuImpl implements Jeu {
   private void jouer() {
     phaseCouloir = true;
     GameContainer.enablePositionsInsertions(null, plateau);
-    //currentPlayer = null;
-    //prochainJoueur();
+    // currentPlayer = null;
+    // prochainJoueur();
     do {
       // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
@@ -192,7 +192,7 @@ class JeuImpl implements Jeu {
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
-    if(infosJoueurs!= null)
+    if (infosJoueurs != null)
       infosJoueurs.update();
   }
 
