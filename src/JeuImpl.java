@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 class JeuImpl implements Jeu {
   private CouloirMobile supplementaire;
@@ -17,6 +18,7 @@ class JeuImpl implements Jeu {
   private Joueur currentPlayer;
   protected PositionInsertion lastInsert;
   protected boolean phaseCouloir;
+  private InfosJoueurs infosJoueurs;
   private static final Random RAND = new Random();
 
   JeuImpl() {
@@ -31,6 +33,7 @@ class JeuImpl implements Jeu {
     setButtonsListener();
     preparerPions();
     prochainJoueur();
+    infosJoueurs = new InfosJoueurs(this);
     display();
     jouer();
   }
@@ -49,6 +52,10 @@ class JeuImpl implements Jeu {
 
   public Map<Couleur, Pion> getPions(){
     return pions;
+  }
+
+  public InfosJoueurs getInfosJoueurs(){
+    return infosJoueurs;
   }
 
   public void preparerPions() {
@@ -184,6 +191,8 @@ class JeuImpl implements Jeu {
       currentPlayer = joueurs.get(0);
     else
       currentPlayer = joueurs.get(++index);
+    if(infosJoueurs!= null)
+      infosJoueurs.update();
   }
 
   private void display() {

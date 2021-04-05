@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class InfosJoueurs extends JPanel{
 
-    private final String baseTexte = "Tour du joueur ";
+    private final static String baseTexte = "Tour du joueur ";
 
     private JeuImpl jeu;
     private JLabel tour;
@@ -32,11 +32,7 @@ public class InfosJoueurs extends JPanel{
         this.add(objectif);
     }
 
-    public void updateObjectif(){
-        objectif.setIcon(new ImageIcon("img/objectifs/"+jeu.getCurrentPlayer().getObjectifs().peek()+".png"));
-        this.repaint();
-    }
-    public void updateJoueur(){
+    public void update(){
         Set<Entry<Couleur,Pion>> mapPions = jeu.getPions().entrySet();
         Pion pionPremierJoueur = jeu.getCurrentPlayer().getPion();
         for(Entry<Couleur,Pion> e : mapPions){
