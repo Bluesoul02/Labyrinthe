@@ -70,7 +70,8 @@ public class CaseListener implements ActionListener {
                 Pion pion = jeu.getCurrentPlayer().getPion();
                 Objectif objectif = pion.deplacer(couloir.getPosition());
                 if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
-                    jeu.getCurrentPlayer().getObjectifs().pop();
+                    if (!jeu.getCurrentPlayer().getObjectifs().isEmpty())
+                        jeu.getCurrentPlayer().getObjectifs().pop();
                 }
                 if (jeu.getPlateau().getVoisinsAtteignables(oldCouloir.getPosition()).isEmpty()
                         || (oldCouloir != couloir && (!oldCouloir.getPions().contains(pion)))) {
