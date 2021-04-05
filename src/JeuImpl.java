@@ -15,6 +15,7 @@ class JeuImpl implements Jeu {
   private List<Objectif> objectifs;
   private Plateau plateau;
   private Joueur currentPlayer;
+  protected PositionInsertion lastInsert;
   protected boolean phaseCouloir;
   private static final Random RAND = new Random();
 
@@ -68,7 +69,7 @@ class JeuImpl implements Jeu {
           BufferedImage player = ImageIO.read(new File("img/pion/" + couleur.toString() + ".png"));
           buf = GameContainer.append(buf, player);
           ((JButton) couloir).setIcon(new ImageIcon(buf));
-          ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
+          // ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -84,6 +85,8 @@ class JeuImpl implements Jeu {
       positionOrigine = pos.oppose();
       for (Pion pion : supplementaire.getPions()) {
         pion.poserA(pos);
+        supplementaire.getPions().remove(pion);
+        plateau.getCouloir(pos.getPosition()).getPions().add(pion);
       }
     }
   }
@@ -164,8 +167,6 @@ class JeuImpl implements Jeu {
     //currentPlayer = null;
     //prochainJoueur();
     do {
-      while (!phaseCouloir)
-        ;
       // currentPlayer.joue();
     } while (!aGagne(currentPlayer));
   }
