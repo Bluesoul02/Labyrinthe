@@ -68,7 +68,6 @@ public class MenuContainer extends JFrame {
             try {
                 new DisplayWindow(jeu.getPlateau(), jeu.getSupplementaire());
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         });

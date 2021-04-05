@@ -60,7 +60,6 @@ public class CaseListener implements ActionListener {
                 ((GameContainer) labyrinthe.getParent()).updateLabyrinthe(labyrinthe, jeu.getPlateau(),
                         jeu.getSupplementaire(), oldSuppl);
                 jeu.lastInsert = positionInsertion;
-                // System.out.println(labyrinthe.getParent().getClass().toString());
             } else {
                 // deplacement pion
                 Couloir oldCouloir = jeu.getPlateau()
@@ -70,21 +69,18 @@ public class CaseListener implements ActionListener {
                 if (objectif == jeu.getCurrentPlayer().getObjectifs().peek()) {
                     jeu.getCurrentPlayer().getObjectifs().pop();
                 }
-                if (oldCouloir != couloir) {
+                if (oldCouloir != couloir && (!oldCouloir.getPions().contains(pion))) {
                     // on redessine l'ancien couloir et le nouveau (destination)
                     try {
                         drawCouloir(oldCouloir);
                         drawCouloir(couloir);
+                        jeu.phaseCouloir = true;
+                        GameContainer.enableComponents(labyrinthe.getComponents(), false);
+                        GameContainer.enablePositionsInsertions(jeu.lastInsert.oppose(), jeu.getPlateau());
+                        jeu.prochainJoueur();
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                } else {
-                    // solution pour la fin de tour, possibilité de remplacer par un bouton de fin
-                    // de tour
-                    jeu.phaseCouloir = true;
-                    GameContainer.enableComponents(labyrinthe.getComponents(), false);
-                    GameContainer.enablePositionsInsertions(jeu.lastInsert.oppose(), jeu.getPlateau());
-                    jeu.prochainJoueur();
                 }
                 // JOptionPane.showMessageDialog(null,
                 // jeu.getCurrentPlayer().getPion().getPositionCourante().x() + ", "
