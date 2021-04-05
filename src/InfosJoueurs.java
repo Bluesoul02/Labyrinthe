@@ -52,10 +52,8 @@ public class InfosJoueurs extends JPanel {
                     this.tour.setText(p.getKey()+" doit rentrer à sa base");
                 }
             }
-            objectif = null;
-            
+            objectif.setIcon(null);
+            this.repaint();     
         }
-        
-        
     }
 }
