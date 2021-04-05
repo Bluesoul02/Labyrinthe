@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.awt.event.*;
-import java.io.IOException;
+//import java.io.IOException;
 
 public class MenuContainer extends JFrame {
 
@@ -65,11 +65,10 @@ public class MenuContainer extends JFrame {
         startGame.setEnabled(true);
         startGame.addActionListener((ActionEvent e) -> {
             dispose();
-            try {
-                new DisplayWindow(jeu.getPlateau(), jeu.getSupplementaire());
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            /*
+             * try { new DisplayWindow(jeu.getPlateau(), jeu.getSupplementaire()); } catch
+             * (IOException e1) { e1.printStackTrace(); }
+             */
         });
 
         panel.add(colors);

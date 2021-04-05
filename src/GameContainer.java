@@ -12,13 +12,14 @@ import java.io.IOException;
 public class GameContainer extends JPanel {
 
     private static final long serialVersionUID = -1431610534661838728L;
-    private static final Dimension dimsScreen = Toolkit.getDefaultToolkit().getScreenSize();
+    // private static final Dimension dimsScreen =
+    // Toolkit.getDefaultToolkit().getScreenSize();
 
     public GameContainer(Plateau plateau, CouloirMobile suppl) throws IOException {
-        //setSize(dimsScreen.width -300, dimsScreen.height-300);
+        // setSize(dimsScreen.width -300, dimsScreen.height-300);
         GridLayout gl = new GridLayout(7, 7);
         JPanel labyrinthe = new JPanel();
-        //labyrinthe.setSize(dimsScreen.width-100, dimsScreen.height-100);
+        // labyrinthe.setSize(dimsScreen.width-100, dimsScreen.height-100);
         labyrinthe.setLayout(gl);
         Border emptyBorder = BorderFactory.createEmptyBorder();
         BufferedImage deco = null;
@@ -44,16 +45,16 @@ public class GameContainer extends JPanel {
                 ImageIcon img = new ImageIcon(buf);
                 couloir.setIcon(img);
 
-                deco = new BufferedImage(151,151,BufferedImage.TYPE_INT_ARGB);
+                deco = new BufferedImage(151, 151, BufferedImage.TYPE_INT_ARGB);
                 Graphics2D graphics = deco.createGraphics();
-                graphics.setColor(new Color(255,255,255,125));
+                graphics.setColor(new Color(255, 255, 255, 125));
                 graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
 
                 buf = append(buf, deco, true);
                 couloir.setDisabledIcon(new ImageIcon(buf));
 
                 couloir.setBorder(emptyBorder);
-                
+
                 gl.addLayoutComponent(couloir.toString(), couloir);
                 labyrinthe.add(couloir);
             }
@@ -131,7 +132,7 @@ public class GameContainer extends JPanel {
             buf = new BufferedImage(w1, h1, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2 = buf.createGraphics();
             g2.drawImage(img1, 0, 0, null);
-            if(isDisabled)
+            if (isDisabled)
                 g2.drawImage(img2, 0, 0, null);
             else
                 g2.drawImage(img2, w1 / 2 - w2 / 2, h1 / 2 - h2 / 2, null);

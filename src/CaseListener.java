@@ -39,8 +39,6 @@ public class CaseListener implements ActionListener {
             g.dispose();
             buf = GameContainer.rotateNTime(buf, 1);
             ((JButton) couloir).setIcon(new ImageIcon(buf));
-            // JOptionPane.showMessageDialog(null, couloir.getOrientation().toString(),
-            // "CouloirSuppl", 1);
         }
 
         else {
@@ -89,11 +87,6 @@ public class CaseListener implements ActionListener {
                     }
                 }
             }
-
-            // JOptionPane.showMessageDialog(null,
-            // (!this.couloir.getPions().isEmpty() ? this.couloir.getPions().get(0) : "pas
-            // de pions"),
-            // couloir.getClass().toString(), 1);
         }
     }
 
@@ -132,10 +125,10 @@ public class CaseListener implements ActionListener {
             }
         }
         ((JButton) couloir).setIcon(new ImageIcon(buf));
-        deco = new BufferedImage(151,151,BufferedImage.TYPE_INT_ARGB);
-                Graphics2D graphics = deco.createGraphics();
-                graphics.setColor(new Color(255,255,255,125));
-                graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
+        deco = new BufferedImage(151, 151, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = deco.createGraphics();
+        graphics.setColor(new Color(255, 255, 255, 125));
+        graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
         buf = GameContainer.append(buf, deco, true);
         ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
     }

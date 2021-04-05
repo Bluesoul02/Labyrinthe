@@ -78,9 +78,9 @@ class JeuImpl implements Jeu {
           buf = GameContainer.append(buf, player, false);
           ((JButton) couloir).setIcon(new ImageIcon(buf));
 
-          deco = new BufferedImage(151,151,BufferedImage.TYPE_INT_ARGB);
+          deco = new BufferedImage(151, 151, BufferedImage.TYPE_INT_ARGB);
           Graphics2D graphics = deco.createGraphics();
-          graphics.setColor(new Color(255,255,255,125));
+          graphics.setColor(new Color(255, 255, 255, 125));
           graphics.fillRect(0, 0, deco.getWidth(), deco.getHeight());
           buf = GameContainer.append(buf, deco, true);
           ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
@@ -163,14 +163,14 @@ class JeuImpl implements Jeu {
   private void preparer() {
     couloirs();
     Objectif[] objectifs = Objectif.values();
-    ArrayList<Objectif> objectifsPris = new ArrayList();
+    ArrayList<Objectif> objectifsPris = new ArrayList<Objectif>();
     int nb = objectifs.length / joueurs.size();
     for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
-      while(tabObj.size() < nb){
+      while (tabObj.size() < nb) {
         for (int i = 0; i < nb; i++) {
           Objectif objectif = objectifs[RAND.nextInt(objectifs.length)];
-          if(!objectifsPris.contains(objectif)){
+          if (!objectifsPris.contains(objectif)) {
             tabObj.push(objectif);
             objectifsPris.add(objectif);
           }
@@ -180,7 +180,7 @@ class JeuImpl implements Jeu {
       j.fixerObjectifs(tabObj);
       System.out.println(tabObj);
     }
-    
+
     this.objectifs = plateau.setCouloirFixe();
     plateau.addCouloirsMobiles(couloirs());
   }
