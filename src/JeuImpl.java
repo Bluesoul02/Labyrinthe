@@ -162,18 +162,18 @@ class JeuImpl implements Jeu {
 
   private void preparer() {
     Objectif[] listeObjectifs = Objectif.values();
-    ArrayList<Objectif> objectifsPris = new ArrayList();
+    ArrayList<Objectif> objectifsPris = new ArrayList<>();
     int nbObjectifs = listeObjectifs.length / joueurs.size();
 
     for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
-      
-      for(int i = 0; i < nbObjectifs; i++){
+
+      for (int i = 0; i < nbObjectifs; i++) {
         Objectif objectif = listeObjectifs[RAND.nextInt(listeObjectifs.length)];
-        if(!objectifsPris.contains(objectif)){
+        if (!objectifsPris.contains(objectif)) {
           tabObj.add(objectif);
           objectifsPris.add(objectif);
-        }else{
+        } else {
           i--;
         }
       }
