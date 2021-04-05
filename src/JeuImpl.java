@@ -174,7 +174,7 @@ class JeuImpl implements Jeu {
     for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
 
-      for (int i = 0; i < 1; i++) {
+      for (int i = 0; i < nbObjectifs; i++) {
         Objectif objectif = listeObjectifs[RAND.nextInt(listeObjectifs.length)];
         if (!objectifsPris.contains(objectif)) {
           tabObj.add(objectif);
