@@ -161,24 +161,23 @@ class JeuImpl implements Jeu {
   }
 
   private void preparer() {
-    couloirs();
-    Objectif[] objectifs = Objectif.values();
+    Objectif[] listeObjectifs = Objectif.values();
     ArrayList<Objectif> objectifsPris = new ArrayList();
-    int nb = objectifs.length / joueurs.size();
+    int nbObjectifs = listeObjectifs.length / joueurs.size();
+
     for (Joueur j : joueurs) {
       Stack<Objectif> tabObj = new Stack<Objectif>();
-      while(tabObj.size() < nb){
-        for (int i = 0; i < nb; i++) {
-          Objectif objectif = objectifs[RAND.nextInt(objectifs.length)];
-          if(!objectifsPris.contains(objectif)){
-            tabObj.push(objectif);
-            objectifsPris.add(objectif);
-          }
+      
+      for(int i = 0; i < nbObjectifs; i++){
+        Objectif objectif = listeObjectifs[RAND.nextInt(listeObjectifs.length)];
+        if(!objectifsPris.contains(objectif)){
+          tabObj.add(objectif);
+          objectifsPris.add(objectif);
+        }else{
+          i--;
         }
-        System.out.println(tabObj.size());
       }
       j.fixerObjectifs(tabObj);
-      System.out.println(tabObj);
     }
     
     this.objectifs = plateau.setCouloirFixe();
