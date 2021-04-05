@@ -71,9 +71,9 @@ class JeuImpl implements Jeu {
           deco = ImageIO.read(new File("img/couleurs/" + couleur.toString() + ".png"));
           buf = ImageIO.read(new File("img/formes/" + couloir.getForme().toString() + ".png"));
           buf = GameContainer.rotateNTime(buf, couloir.getOrientation().getRotation());
-          buf = GameContainer.append(buf, deco);
+          buf = GameContainer.append(buf, deco, false);
           BufferedImage player = ImageIO.read(new File("img/pion/" + couleur.toString() + ".png"));
-          buf = GameContainer.append(buf, player);
+          buf = GameContainer.append(buf, player, false);
           ((JButton) couloir).setIcon(new ImageIcon(buf));
           // ((JButton) couloir).setDisabledIcon(new ImageIcon(buf));
         } catch (IOException e) {
@@ -109,20 +109,19 @@ class JeuImpl implements Jeu {
   @Override
   public List<Couloir> couloirs() {
     List<Couloir> couloirs = new ArrayList<Couloir>();
-    Random rand = new Random();
     int stepX = 2;
     int x = 1;
     int y = 0;
     for (int i = 0; i < 34; i++) {
-      int f = rand.nextInt(3);
-      int or = rand.nextInt(4);
-      int hasObj = rand.nextInt(2);
+      int f = RAND.nextInt(3);
+      int or = RAND.nextInt(4);
+      int hasObj = RAND.nextInt(2);
       Objectif obj = null;
       int k = -1;
       if (hasObj == 0 && objectifs.size() < 24) {
         Boolean found = false;
         while (!found) {
-          k = rand.nextInt(24);
+          k = RAND.nextInt(24);
           obj = Objectif.values()[k];
           if (!objectifs.contains(obj)) {
             objectifs.add(obj);
@@ -147,7 +146,7 @@ class JeuImpl implements Jeu {
 
       couloirs.add(coul);
     }
-    this.supplementaire = new CouloirMobile(Orientation.values()[rand.nextInt(4)], Forme.values()[rand.nextInt(3)],
+    this.supplementaire = new CouloirMobile(Orientation.values()[RAND.nextInt(4)], Forme.values()[RAND.nextInt(3)],
         null, null);
     supplementaire.setPosee(false);
     return couloirs;
