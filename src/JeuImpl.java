@@ -162,7 +162,7 @@ class JeuImpl implements Jeu {
 
   private void preparer() {
     Objectif[] listeObjectifs = Objectif.values();
-    ArrayList<Objectif> objectifsPris = new ArrayList();
+    ArrayList<Objectif> objectifsPris = new ArrayList<>();
     int nbObjectifs = listeObjectifs.length / joueurs.size();
 
     for (Joueur j : joueurs) {
@@ -182,6 +182,7 @@ class JeuImpl implements Jeu {
 
     this.objectifs = plateau.setCouloirFixe();
     plateau.addCouloirsMobiles(couloirs());
+    System.out.println(this.objectifs);
   }
 
   private void jouer() {

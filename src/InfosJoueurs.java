@@ -35,13 +35,23 @@ public class InfosJoueurs extends JPanel {
     public void update() {
         Set<Entry<Couleur, Pion>> mapPions = jeu.getPions().entrySet();
         Pion pionPremierJoueur = jeu.getCurrentPlayer().getPion();
-        for (Entry<Couleur, Pion> e : mapPions) {
-            if (e.getValue() == pionPremierJoueur) {
-                this.tour.setText(baseTexte + e.getKey());
+        Objectif objectifPile = jeu.getCurrentPlayer().getObjectifs().peek();
+        if(objectifPile == null){
+            for (Entry<Couleur, Pion> e : mapPions) {
+                if (e.getValue() == pionPremierJoueur) {
+                    this.tour.setText(e.getKey()+" doit rentrer à sa base");
+                }
             }
+            objectif = null;
+        }else{
+            for (Entry<Couleur, Pion> e : mapPions) {
+                if (e.getValue() == pionPremierJoueur) {
+                    this.tour.setText(baseTexte + e.getKey());
+                }
+            }
+            objectif.setIcon(new ImageIcon("img/objectifs/" + objectifPile + ".png"));
         }
-
-        objectif.setIcon(new ImageIcon("img/objectifs/" + jeu.getCurrentPlayer().getObjectifs().peek() + ".png"));
+        
         this.repaint();
     }
 }
