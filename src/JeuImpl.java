@@ -78,11 +78,12 @@ class JeuImpl implements Jeu {
       supplementaire.setOrientation(orientation);
       supplementaire = plateau.modifierCouloirs(pos, supplementaire);
       positionOrigine = pos.oppose();
+      Couloir couloir = plateau.getCouloir(pos.getPosition());
       for (Pion pion : supplementaire.getPions()) {
         pion.poserA(pos);
-        supplementaire.getPions().remove(pion);
-        plateau.getCouloir(pos.getPosition()).getPions().add(pion);
+        couloir.getPions().add(pion);
       }
+      supplementaire.getPions().removeAll(supplementaire.getPions());
     }
   }
 

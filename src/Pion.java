@@ -7,5 +7,5 @@ interface Pion {
 
     Position getPositionCourante();
 
-    Position posInsToPos(PositionInsertion posIns);
+    void setPositionCourante(Position pos);
 }
