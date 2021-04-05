@@ -109,7 +109,7 @@ public class CaseListener implements ActionListener {
         if (couloir.getObjectif() != null)
             deco = ImageIO.read(new File("img/objectifs/" + couloir.getObjectif().toString() + ".png"));
         if (deco != null)
-            buf = GameContainer.append(buf, deco);
+            buf = GameContainer.append(buf, deco, false);
         List<Pion> pions = couloir.getPions();
         Couleur couleurPion = null;
         Position posI;
@@ -125,7 +125,7 @@ public class CaseListener implements ActionListener {
                     && pion.getPositionCourante().y() == couloir.getPosition().y()) {
                 player = ImageIO.read(new File("img/pion/" + couleurPion.toString() + ".png"));
                 if (player != null)
-                    buf = GameContainer.append(buf, player);
+                    buf = GameContainer.append(buf, player, false);
             }
         }
         ((JButton) couloir).setIcon(new ImageIcon(buf));
