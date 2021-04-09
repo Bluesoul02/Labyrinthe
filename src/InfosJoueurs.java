@@ -49,7 +49,7 @@ public class InfosJoueurs extends JPanel {
         }catch(EmptyStackException e){
             for (Entry<Couleur, Pion> p : mapPions) {
                 if (p.getValue() == pionJoueur) {
-                    this.tour.setText(p.getKey()+" doit rentrer à sa base");
+                    this.tour.setText(p.getKey()+" doit rentrer a sa base");
                 }
             }
             objectif.setIcon(null);
